@@ -109,13 +109,8 @@ app.put("/alumnos", (req, res) =>
     let edadModificar = parseInt(req.body.edad);
     let profesionModificar = req.body.profesion;
  
-    Alumno.findByIdAndUpdate(idModificar, { nombre: nombreModificar, edad: edadModificar, profesion: profesionModificar }, (err, alumno) => 
-     {
-        if (err) 
-        {
-            console.log(err)
-        } 
-        else 
+    Alumno.findByIdAndUpdate(idModificar, { nombre: nombreModificar, edad: edadModificar, profesion: profesionModificar }, (err, alumno) => { if (err) { console.log(err) } 
+    else 
         {
             console.log(alumno)
             res.json(alumno)
