@@ -9,6 +9,7 @@ require("dotenv").config();
 let userDB = process.env.DB_USER;
 let passDB = process.env.DB_PASS;
 const port = process.env.PORT || 3000;
+let id_valido = false;
  
 app.use(cors());  
 mongoose.connect(DATABASE_URL);  
@@ -20,37 +21,35 @@ let Usuario = require("./models/Usuario");
 app.use(express.json());  
 app.use("/", express.static("frontend"))
 
-let id_valido = false;
-app.post("/", (req, res) => {
-    let userRecibido = req.body.user;
-    let passRecibido = req.body.pass;
-
-    Usuario.findOne({ user: userRecibido, pass: passRecibido }, (err, unUsuario) => { if (err)  { return console.log(err) } 
-                  else if (unUsuario === null)  
-                  {
-                      id_valido = false;
-                      res.json({id_valido: false})
-                  } 
-                  else 
-                  {
-                      id_valido = true;
-                      console.log(unUsuario)
-                      console.log(unUsuario._id);
-                      Alumno.find({id_Usuario: unUsuario._id}, (err, alumnos) => { if (err) { return console.log(err)} 
-                             else 
-                             {
-                              console.log(alumnos)
-                              res.json({ datosUsuario: {id_valido: true,id: unUsuario._id,nombreUsuario: unUsuario.user},datosAlumnos: alumnos
-                              })
-                          }
-                      })
-                  }
-           })
+app.post("/", (req, res) => 
+{
+    Usuario.findOne({ user: req.body.user, pass: req.body.pass }, (err, unUsuario) => { if (err)  { return console.log(err) } 
+             else if (unUsuario === null)  
+             {
+                 id_valido = false;
+                 res.json({id_valido: false})
+             } 
+             else 
+             {
+                 id_valido = true;
+                 console.log(unUsuario)
+                 console.log(unUsuario._id);
+                 Alumno.find({id_Usuario: unUsuario._id}, (err, alumnos) => { if (err) { return console.log(err)} 
+                        else 
+                        {
+                         console.log(alumnos)
+                         res.json({ datosUsuario: {id_valido: true,id: unUsuario._id,nombreUsuario: unUsuario.user},datosAlumnos: alumnos
+                         })
+                     }
+                 })
+             }
+      })
 })
  
  
 
-app.use((req, res, next) => {
+app.use((req, res, next) => 
+{
     if (id_valido) {
         next()
     } else {
@@ -61,14 +60,16 @@ app.use((req, res, next) => {
     }
 })
  
-app.get("/cerrar", (req, res) => {
+app.get("/cerrar", (req, res) => 
+{
     id_valido = false;
     res.json({
         mensaje: "sesion cerrada"
     });
 })
  
-app.get("/alumnos", (req, res) => {
+app.get("/alumnos", (req, res) => 
+{
     Alumno.find((err, alumnos) => {
         if (err) {
             return console.log(err)
@@ -81,7 +82,8 @@ app.get("/alumnos", (req, res) => {
 })
 
 //http://localhost:3000/alumnos/3
-app.get("/alumnos/:id", (req, res) => {
+app.get("/alumnos/:id", (req, res) => 
+{
     let idBuscar = req.params.id
     console.log(idBuscar);
     Alumno.findOne({
@@ -98,7 +100,8 @@ app.get("/alumnos/:id", (req, res) => {
 })
 
  
-app.post("/alumnos", (req, res) => {
+app.post("/alumnos", (req, res) => 
+{
     console.log(req.body);
     console.log(req.body.nombre);
 
@@ -118,7 +121,8 @@ app.post("/alumnos", (req, res) => {
     })
 })
 
-app.put("/alumnos", (req, res) => {
+app.put("/alumnos", (req, res) => 
+{
     console.log(req.body);
    
     let idModificar = req.body.id;
@@ -141,7 +145,8 @@ app.put("/alumnos", (req, res) => {
 
 })
 
-app.delete("/alumnos/:idEliminar", (req, res) => {
+app.delete("/alumnos/:idEliminar", (req, res) => 
+{
     console.log(req.params.idEliminar);
     let idEliminar = req.params.idEliminar;
     console.log(idEliminar);
@@ -154,16 +159,19 @@ app.delete("/alumnos/:idEliminar", (req, res) => {
     })
 })
 
-app.use((req, res, next) => {
+app.use((req, res, next) => 
+{
     res.statusCode = 404;
     res.send("la pagina solicitada no existe")
 })
 
-app.listen(port, () => {
+app.listen(port, () => 
+{
     console.log(`Open in http:localhost:${port}`);
      
 })
 
-/* app.get("/", (req, res) => {
+/* app.get("/", (req, res) => 
+{
     res.send("hola entraste a la raiz");
 }) */
