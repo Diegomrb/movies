@@ -1,10 +1,11 @@
+let DATABASE_URL = `mongodb+srv://entrega:entrega@cluster0.zfkhx.mongodb.net/base_clase?retryWrites=true&w=majority`; 
+
 const mongoose = require("mongoose");
 const express = require('express');
 const app = express();
 const cors = require('cors');
 require("dotenv").config();
 
-let DATABASE_URL = `mongodb+srv://entrega:entrega@cluster0.zfkhx.mongodb.net/base_clase?retryWrites=true&w=majority`; 
 let userDB = process.env.DB_USER;
 let passDB = process.env.DB_PASS;
 const port = process.env.PORT || 3000;
@@ -13,6 +14,7 @@ app.use(cors());
 mongoose.connect(DATABASE_URL);  
 let db = mongoose.connection;
 db.once("open", () => console.log("session active"))
+
 let Alumno = require("./models/Alumno");
 let Usuario = require("./models/Usuario");
 app.use(express.json());  
