@@ -44,35 +44,32 @@ app.post("/", (req, res) =>
  
 app.use((req, res, next) => 
 {
-    if (id_valido) {
+    if (id_valido) 
+    {
         next()
-    } else {
+    } 
+    else 
+    {
         res.statusCode = 401;
-        res.json({
-            mensaje: "no autorizado"
-        })
+        res.json({mensaje: "no autorizado"})
     }
 })
  
 app.get("/cerrar", (req, res) => 
 {
     id_valido = false;
-    res.json({
-        mensaje: "sesion cerrada"
-    });
+    res.json({mensaje: "sesion cerrada"});
 })
  
 app.get("/alumnos", (req, res) => 
 {
-    Alumno.find((err, alumnos) => {
-        if (err) {
-            return console.log(err)
-        } else {
+    Alumno.find((err, alumnos) => { if (err) { return console.log(err) } 
+          else 
+          {
             console.log(alumnos)
             res.json(alumnos)
-        }
-    })
-
+          }
+      })
 })
 
 //http://localhost:3000/alumnos/3
@@ -80,13 +77,9 @@ app.get("/alumnos/:id", (req, res) =>
 {
     let idBuscar = req.params.id
     console.log(idBuscar);
-    Alumno.findOne({
-            _id: idBuscar
-        },
-        (err, alumnos) => {
-            if (err) {
-                return console.log(err)
-            } else {
+    Alumno.findOne({ _id: idBuscar },(err, alumnos) => { if (err) { return console.log(err) } 
+          else 
+           {
                 console.log(alumnos)
                 res.json(alumnos)
             }
@@ -99,17 +92,10 @@ app.post("/alumnos", (req, res) =>
     console.log(req.body);
     console.log(req.body.nombre);
 
-    let persona = new Alumno({
-        nombre: req.body.nombre,
-        edad: req.body.edad,
-        profesion: req.body.profesion,
-        id_Usuario: req.body.id_Usuario,
-    })
-
-    persona.save((err, alumno) => {
-        if (err) {
-            console.log(err)
-        } else {
+    let persona = new Alumno({ nombre: req.body.nombre, edad: req.body.edad, profesion: req.body.profesion, id_Usuario: req.body.id_Usuario,})
+    persona.save((err, alumno) => { if (err) { console.log(err) } 
+       else 
+       {
             res.json(alumno)
         }
     })
@@ -118,20 +104,19 @@ app.post("/alumnos", (req, res) =>
 app.put("/alumnos", (req, res) => 
 {
     console.log(req.body);
-   
     let idModificar = req.body.id;
     let nombreModificar = req.body.nombre;
     let edadModificar = parseInt(req.body.edad);
     let profesionModificar = req.body.profesion;
  
-    Alumno.findByIdAndUpdate(idModificar, {
-        nombre: nombreModificar,
-        edad: edadModificar,
-        profesion: profesionModificar
-    }, (err, alumno) => {
-        if (err) {
+    Alumno.findByIdAndUpdate(idModificar, { nombre: nombreModificar, edad: edadModificar, profesion: profesionModificar }, (err, alumno) => 
+     {
+        if (err) 
+        {
             console.log(err)
-        } else {
+        } 
+        else 
+        {
             console.log(alumno)
             res.json(alumno)
         }
@@ -144,10 +129,9 @@ app.delete("/alumnos/:idEliminar", (req, res) =>
     console.log(req.params.idEliminar);
     let idEliminar = req.params.idEliminar;
     console.log(idEliminar);
-    Alumno.findByIdAndDelete(idEliminar, (err, alumno) => {
-        if (err) {
-            console.log(err)
-        } else {
+    Alumno.findByIdAndDelete(idEliminar, (err, alumno) => { if (err)  { console.log(err) } 
+        else 
+        {
             res.json(alumno)
         }
     })
