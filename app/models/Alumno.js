@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 //MODELOS
 
-let tableName = "alumno";
+let tableName = "alumnos";
 
 let schema = mongoose.Schema;
 let Schema_ = new schema({
