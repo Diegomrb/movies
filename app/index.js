@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000;
 app.use(cors());  
 mongoose.connect(DATABASE_URL);  
 let db = mongoose.connection;
-db.once("open", () => console.log("conectado a la base"))
+db.once("open", () => console.log("session active"))
 let Alumno = require("./models/Alumno");
 let Usuario = require("./models/Usuario");
 app.use(express.json());  
@@ -136,13 +136,12 @@ app.post("/alumnos", (req, res) => {
 
 app.put("/alumnos", (req, res) => {
     console.log(req.body);
-    //------------------
+   
     let idModificar = req.body.id;
     let nombreModificar = req.body.nombre;
     let edadModificar = parseInt(req.body.edad);
     let profesionModificar = req.body.profesion;
-    //------------------------------------
-
+ 
     Alumno.findByIdAndUpdate(idModificar, {
         nombre: nombreModificar,
         edad: edadModificar,
@@ -177,6 +176,6 @@ app.use((req, res, next) => {
 })
 
 app.listen(port, () => {
-    console.log(`Ejemplo de app en http:localhost:${port}`);
-    console.log("hola")
+    console.log(`Open in http:localhost:${port}`);
+     
 })
