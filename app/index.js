@@ -1,35 +1,23 @@
-//REQUIRE
+const mongoose = require("mongoose");
 const express = require('express');
 const app = express();
+const cors = require('cors');
 require("dotenv").config();
+
+let DATABASE_URL = `mongodb+srv://entrega:entrega@cluster0.zfkhx.mongodb.net/base_clase?retryWrites=true&w=majority`; 
 let userDB = process.env.DB_USER;
 let passDB = process.env.DB_PASS;
 const port = process.env.PORT || 3000;
-//-------------------------------
-//CORS
-const cors = require('cors');
-app.use(cors());
-//-------------------------------
-//MONGOOSE
-const mongoose = require("mongoose");
-mongoose.connect(`mongodb+srv://entrega:entrega@cluster0.zfkhx.mongodb.net/base_clase?retryWrites=true&w=majority`);
+ 
+app.use(cors());  
+mongoose.connect(DATABASE_URL);  
 let db = mongoose.connection;
 db.once("open", () => console.log("conectado a la base"))
-
-//-------------------------------
-//MODELOS
 let Alumno = require("./models/Alumno");
 let Usuario = require("./models/Usuario");
-
-//-------------------------------
-
-app.use(express.json());
-//para poder acceder a los datos enviados por el body de post y put
-
-//--------------------------------------
-
-//ENRUTAMIENTO O DIRECCIONAMIENTO
-//GET Peticiones de informacion
+app.use(express.json()); //para poder acceder a los datos enviados por el body de post y put
+ 
+//GET Peticiones de informacion, ENRUTAMIENTO O DIRECCIONAMIENTO
 app.use("/", express.static("frontend"))
 
 /* app.get("/", (req, res) => {
