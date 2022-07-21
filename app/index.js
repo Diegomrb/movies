@@ -26,43 +26,40 @@ app.post("/", (req, res) => {
     let userRecibido = req.body.user;
     let passRecibido = req.body.pass;
 
-    Usuario.findOne({
-        user: userRecibido,
-        pass: passRecibido
-    }, (err, unUsuario) => {
-        if (err) {
-            return console.log(err)
-        } else if (unUsuario === null) {
-            //el usuario no es valido
-            id_valido = false;
-            res.json({
-                id_valido: false
-            })
-        } else {
-            id_valido = true;
-            console.log(unUsuario)
-            console.log(unUsuario._id);
-            Alumno.find({
-                id_Usuario: unUsuario._id
-            }, (err, alumnos) => {
-                if (err) {
-                    return console.log(err)
-                } else {
-                    console.log(alumnos)
-                    res.json({
-                        datosUsuario: {
-                            id_valido: true,
-                            id: unUsuario._id,
-                            nombreUsuario: unUsuario.user
-                        },
-                        datosAlumnos: alumnos
-                    })
-                }
-            })
-
-        }
-    })
-})
+    Usuario.findOne({ user: userRecibido, pass: passRecibido }, 
+          (err, unUsuario) => 
+               {
+                  if (err) 
+                  {
+                      return console.log(err)
+                  } 
+                  else if (unUsuario === null)  //el usuario no es valido
+                  {
+                      id_valido = false;
+                      res.json({id_valido: false})
+                  } 
+                  else 
+                  {
+                      id_valido = true;
+                      console.log(unUsuario)
+                      console.log(unUsuario._id);
+                      Alumno.find({id_Usuario: unUsuario._id}, 
+                             (err, alumnos) => 
+                              {
+                             if (err) 
+                             {
+                              return console.log(err)
+                             } 
+                             else 
+                             {
+                              console.log(alumnos)
+                              res.json({ datosUsuario: {id_valido: true,id: unUsuario._id,nombreUsuario: unUsuario.user},datosAlumnos: alumnos
+                              })
+                          }
+                      })
+                  }
+              })
+         })
  
  
 
