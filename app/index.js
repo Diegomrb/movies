@@ -20,22 +20,13 @@ let Usuario = require("./models/Usuario");
 app.use(express.json());  
 app.use("/", express.static("frontend"))
 
-/* app.get("/", (req, res) => {
-    res.send("hola entraste a la raiz");
-}) */
 let id_valido = false;
 app.post("/", (req, res) => {
     let userRecibido = req.body.user;
     let passRecibido = req.body.pass;
 
-    Usuario.findOne({ user: userRecibido, pass: passRecibido }, 
-          (err, unUsuario) => 
-               {
-                  if (err) 
-                  {
-                      return console.log(err)
-                  } 
-                  else if (unUsuario === null)  //el usuario no es valido
+    Usuario.findOne({ user: userRecibido, pass: passRecibido }, (err, unUsuario) => { if (err)  { return console.log(err) } 
+                  else if (unUsuario === null)  
                   {
                       id_valido = false;
                       res.json({id_valido: false})
@@ -45,13 +36,7 @@ app.post("/", (req, res) => {
                       id_valido = true;
                       console.log(unUsuario)
                       console.log(unUsuario._id);
-                      Alumno.find({id_Usuario: unUsuario._id}, 
-                             (err, alumnos) => 
-                              {
-                             if (err) 
-                             {
-                              return console.log(err)
-                             } 
+                      Alumno.find({id_Usuario: unUsuario._id}, (err, alumnos) => { if (err) { return console.log(err)} 
                              else 
                              {
                               console.log(alumnos)
@@ -60,8 +45,8 @@ app.post("/", (req, res) => {
                           }
                       })
                   }
-              })
-         })
+           })
+})
  
  
 
@@ -178,3 +163,7 @@ app.listen(port, () => {
     console.log(`Open in http:localhost:${port}`);
      
 })
+
+/* app.get("/", (req, res) => {
+    res.send("hola entraste a la raiz");
+}) */
