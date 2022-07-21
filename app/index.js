@@ -15,9 +15,7 @@ let db = mongoose.connection;
 db.once("open", () => console.log("conectado a la base"))
 let Alumno = require("./models/Alumno");
 let Usuario = require("./models/Usuario");
-app.use(express.json()); //para poder acceder a los datos enviados por el body de post y put
- 
-//GET Peticiones de informacion, ENRUTAMIENTO O DIRECCIONAMIENTO
+app.use(express.json());  
 app.use("/", express.static("frontend"))
 
 /* app.get("/", (req, res) => {
@@ -65,8 +63,8 @@ app.post("/", (req, res) => {
         }
     })
 })
-//------------------------------------------
-//middleware inahabilitar de aca para adelante a menos que este logueado
+ 
+ 
 
 app.use((req, res, next) => {
     if (id_valido) {
@@ -78,15 +76,14 @@ app.use((req, res, next) => {
         })
     }
 })
-//DIRECIONAMIENTO DE CERRAR
+ 
 app.get("/cerrar", (req, res) => {
     id_valido = false;
     res.json({
         mensaje: "sesion cerrada"
     });
 })
-//------------------------------------------
-//DIRECCIONAMIENTO ALUMNOS
+ 
 app.get("/alumnos", (req, res) => {
     Alumno.find((err, alumnos) => {
         if (err) {
@@ -99,8 +96,6 @@ app.get("/alumnos", (req, res) => {
 
 })
 
-//------------------------------------------
-//peticion con envio de parametros
 //http://localhost:3000/alumnos/3
 app.get("/alumnos/:id", (req, res) => {
     let idBuscar = req.params.id
@@ -118,10 +113,7 @@ app.get("/alumnos/:id", (req, res) => {
         })
 })
 
-////////////////////////////////////////////////////////////
-
-//Peticiones POST PUT DELETE
-//------------------------------------------
+ 
 app.post("/alumnos", (req, res) => {
     console.log(req.body);
     console.log(req.body.nombre);
@@ -141,8 +133,6 @@ app.post("/alumnos", (req, res) => {
         }
     })
 })
-
-//------------------------------------------
 
 app.put("/alumnos", (req, res) => {
     console.log(req.body);
@@ -167,7 +157,7 @@ app.put("/alumnos", (req, res) => {
     })
 
 })
-//------------------------------------------
+
 app.delete("/alumnos/:idEliminar", (req, res) => {
     console.log(req.params.idEliminar);
     let idEliminar = req.params.idEliminar;
@@ -181,14 +171,11 @@ app.delete("/alumnos/:idEliminar", (req, res) => {
     })
 })
 
-
-//MIDDLEWARE DE ERROR 404
 app.use((req, res, next) => {
     res.statusCode = 404;
     res.send("la pagina solicitada no existe")
 })
 
-//---------------------------------------------------------------
 app.listen(port, () => {
     console.log(`Ejemplo de app en http:localhost:${port}`);
     console.log("hola")
