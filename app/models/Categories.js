@@ -11,8 +11,7 @@ let Schema_ = new schema({
     year: Number,
     gender: String,
     description: String,
-    status: Number,
-    id_Usuario: String,
+    status: Number
 })
 let categoria = mongoose.model(tableName, Schema_);
 
