@@ -1,13 +1,9 @@
 const mongoose = require("mongoose");
-//MODELOS
-
 let tableName = "usuario";
-
 let schema = mongoose.Schema;
-let Schema_ = new schema({
+let schema_ = new schema({
     user: String,
     pass: String
 })
-let usuario = mongoose.model(tableName, Schema_)
-
+let usuario = mongoose.model(tableName, schema_)
 module.exports=usuario;
