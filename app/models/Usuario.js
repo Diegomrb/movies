@@ -4,5 +4,5 @@ let schema_ = new schema({
     user: String,
     pass: String
 })
-let usuario = mongoose.model("usuario", schema_)
+let usuario = mongoose.model("usuarios", schema_)
 module.exports = usuario;
