@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 let tableName = "category";
 let schema = mongoose.Schema;
-let Schema_ = new schema({ 
+let schema_ = new schema({ 
     name: String,
     type: String,
     rank: Number,
@@ -10,5 +10,5 @@ let Schema_ = new schema({
     description: String,
     status: Number
 })
-let categoria = mongoose.model(tableName, Schema_);
+let categoria = mongoose.model(tableName, schema_);
 module.exports= categoria;
