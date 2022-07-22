@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-let tableName = "alumnos";
 let schema = mongoose.Schema;
 let schema_ = new schema({
     nombre: String,
@@ -7,5 +6,5 @@ let schema_ = new schema({
     profesion: String,
     id_Usuario: String,
 })
-let alumnos = mongoose.model(tableName, schema_);
+let alumnos = mongoose.model("alumnos", schema_);
 module.exports = alumnos;
