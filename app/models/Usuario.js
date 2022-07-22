@@ -5,4 +5,4 @@ let schema_ = new schema({
     pass: String
 })
 let usuario = mongoose.model("usuario", schema_)
-module.exports=usuario;
+module.exports = usuario;
