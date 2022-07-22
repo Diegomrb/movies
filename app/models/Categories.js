@@ -1,10 +1,7 @@
 const mongoose = require("mongoose");
-//MODELOS
-
 let tableName = "category";
-
 let schema = mongoose.Schema;
-let Schema_ = new schema({
+let Schema_ = new schema({ 
     name: String,
     type: String,
     rank: Number,
@@ -14,5 +11,4 @@ let Schema_ = new schema({
     status: Number
 })
 let categoria = mongoose.model(tableName, Schema_);
-
 module.exports= categoria;
