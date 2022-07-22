@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-let tableName = "category";
 let schema = mongoose.Schema;
 let schema_ = new schema({ 
     name: String,
@@ -10,5 +9,5 @@ let schema_ = new schema({
     description: String,
     status: Number
 })
-let categoria = mongoose.model(tableName, schema_);
+let categoria = mongoose.model("category", schema_);
 module.exports= categoria;
