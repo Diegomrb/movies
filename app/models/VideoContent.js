@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
-//MODELOS
 let schema = mongoose.Schema;
-let videoContentSchema = new schema({
+let schema_ = new schema({
     name: String,
     type: String,
     rank: Number,
@@ -11,6 +10,5 @@ let videoContentSchema = new schema({
     status: Number,
     id_Usuario: String,
 })
-let videoContent = mongoose.model("video_content", videoContentSchema)
-
+let videoContent = mongoose.model("video_content", schema_)
 module.exports= videoContent;
