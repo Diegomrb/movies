@@ -11,4 +11,4 @@ let schema_ = new schema({
     id_Usuario: String,
 })
 let videoContent = mongoose.model("video_content", schema_)
-module.exports= videoContent;
+module.exports = videoContent;
