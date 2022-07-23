@@ -104,8 +104,8 @@ function mostrarcontent(_content)
     _content.forEach(element => 
     {
         // ${element._id}
-        divDatos.innerHTML += `<article class="col-md-3 mt-4 alert alert-secondary mx-1">
-            <h6 data-id="${element._id}"> - ${element.title} ${element.year}  ${element.genero}</h6>
+        divDatos.innerHTML += `<article class="col-md-12 mt-4 alert alert-secondary mx-1" style="background-color: white;">
+            <h6 data-id="${element._id}"> <b> ${element.title}</b> ${element.year}  ${element.genero}</h6>
             <input data-idModificar="${element._id}" type="button" class="modificar form-select-sm" value="Modificar">
             <input data-idEliminar="${element._id}" type="button" class="eliminar form-select-sm" value="Eliminar">
             </article>`
