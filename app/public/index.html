@@ -12,7 +12,7 @@
 
 <body>
              
-    <div class="modal_form  mt-0">
+    <div class="modal_form  mt-0" >
        
         <div class="alert">
             <div id="login" class="container mt-1">
@@ -29,38 +29,41 @@
                     
 
             </div>
-            <div id="info" style="display: none" class="container mt-1">
-                
+            <div id="info" style="display: none" class="container" >
+                <div class="nav_ row">
+                    <h2>The Movie List</h2>
+                </div>
                 <div class="row">
-                    <div class="col-md-8">
-                        <div class="container p-1">
+                    <div class="col-md-8 lista_" >
+                        
+                        <div class="container p-1" hidden>
                             <div class="row" >
                                 <input type="text" id="txt_buscar" placeholder="BUSCAR"  class="float-end  col-md-10">
                 
                                 <input type="button" value="BUSCAR" id="bt_buscar" class="btn btn-primary mt-1 col">
                             </div>
                         </div>
-                        <div class="container global" style="background-color: #d4d2d2;">
+                        <div class="container global " >
                            
                             <div id="datos" class="row mensajes"> </div>
                         </div>
                       </div>
-                   <div class="col-md-4">
-                    <h1>Ingresar pelicula o serie</h1>
+                   <div class="col-md-4 form_ content_" >
+                    <h4 class="title mt-1">Ingresar pelicula o serie</h4>
                     <label for="title_">Titulo</label>
-                    <input type="text" id="title_" class="form-control" placeholder="TITULO" required>  
+                    <input type="text" id="title_" class="form-control fondo_input" placeholder="TITULO" required>  
                     <label for="year_" class="mt-1">AÑO</label>
-                    <input type="number" id="year_" class="form-control" placeholder="AÑO" required> 
+                    <input type="number" id="year_" class="form-control fondo_input" placeholder="AÑO" required> 
                     <label for="category">CATEGORIA</label>
-                    <select class="form-select form-select-sm" id="category" aria-label="Default select example">
+                    <select class="form-select form-select-sm fondo_input" id="category" aria-label="Default select example">
                         <option selected>Seleciona una categoria</option>
                         <option value="PELICULA">PELICULA</option>
                         <option value="SERIE">SERIE</option> 
                       </select>
                     <hr>
                     <input type="button" id="bt_mostrar" value="LISTAR" class="btn btn-info" hidden>
-                    <input type="button" value="REGISTRAR" id="bt_ingresar" class="btn btn-info">
-                    <input type="button" value="MODIFICAR" id="bt_modificar_content" class="btn btn-info">
+                    <input type="button" value="REGISTRAR" id="bt_ingresar" class="btn btn-info input">
+                    <input type="button" value="MODIFICAR" id="bt_modificar_content" class="btn btn-info input">
                     <input type="button" id="bt_cerrar" value="SALIR" class="btn btn-warning float-end">
                    </div>
               

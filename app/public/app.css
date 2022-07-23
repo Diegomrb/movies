@@ -1,14 +1,45 @@
 .modal_form {
-  color: white;
+ 
+  color: black;
   background: rgb(2,0,36);
 background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(61, 147, 234) 35%, rgb(221, 0, 255) 100%);
+}
+
+.title 
+{
+  color: #959595; 
+}
+.nav_ {
+  background-color:#393939;
+  border-radius:10px 10px 0px 0px;
+  color:white;
+}
+.fondo_input 
+{
+  background-color: #cdcdcd; 
+}
+
+.input {
+  background-color: #595dbc;
+}
+.content_
+{
+  background-color: #f2f2f2;
+  padding: auto;
+}
+.lista_ {
+  background-color: #cdcdcd; 
+  
+}
+.form_ {
+  background-color: #f2f2f2;
+   
 }
 
 .global {
 	height: 600px;
 	width: 100%;
-	border: 1px solid #ddd;
-	background: #f1f1f1;
+	border: 0px solid #ddd;
 	overflow-y: scroll;
 }
 .mensajes {
