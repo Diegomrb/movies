@@ -1,14 +1,14 @@
 let url = "http://localhost:3000";
 //VARIABLES GLOBALES
-let alumnosCargados;//array alumnos que viene de la coleccion
-let alumnoModificar//
+let content;//array content que viene de la coleccion
+let contentModificar//
 //ELEMENTOS
 let btCerrar = document.querySelector("#bt_cerrar");
 btCerrar.addEventListener("click",function(){
     localStorage.clear();
     document.querySelector("#info").style.display = "none"
     document.querySelector("#login").style.display = "block";
-    alumnosCargados=[];
+    content=[];
     fetch(`${url}/cerrar`)
         .then(respuesta=>respuesta.json())
         .then(datos=>{
@@ -30,26 +30,26 @@ let btMostrar = document.querySelector("#bt_mostrar")
 let txtBuscar = document.querySelector("#txt_buscar")
 let btBuscar = document.querySelector("#bt_buscar")
 //-------------------------------------------------
-let txtNombre = document.querySelector("#txt_nombre");
-let txtEdad = document.querySelector("#txt_edad");
-let txtProfesion = document.querySelector("#txt_profesion");
+let txttitle = document.querySelector("#title_");
+let txtyear = document.querySelector("#year_");
+let txtgenero = document.querySelector("#category");
 let btIngresar = document.querySelector("#bt_ingresar")
 //-----------------------------------------------
-let txtNombreModificar = document.querySelector("#txt_nombre"); //document.querySelector("#txt_nombre_modificar");
-let txtEdadModificar = document.querySelector("#txt_edad"); //document.querySelector("#txt_edad_modificar");
-let txtProfesionModificar = document.querySelector("#txt_profesion"); //document.querySelector("#txt_profesion_modificar");
-let btModificarAlumno = document.querySelector("#bt_modificar_alumno")
+let txttitleModificar = document.querySelector("#title_"); //document.querySelector("#title__modificar");
+let txtyearModificar = document.querySelector("#year_"); //document.querySelector("#year__modificar");
+let txtgeneroModificar = document.querySelector("#category"); //document.querySelector("#category_modificar");
+let btModificarcontent = document.querySelector("#bt_modificar_content")
 //-----------------------------------------------
 let divDatos = document.querySelector("#datos");
 //EVENTOS
 btMostrar.addEventListener("click", mostrarDatos);
-btBuscar.addEventListener("click", buscarAlumno)
-btIngresar.addEventListener("click", ingresarAlumno)
+btBuscar.addEventListener("click", buscarcontent)
+btIngresar.addEventListener("click", ingresarcontent)
 btLoguear.addEventListener("click", ingresarApp)
 
 if (localStorage.idUsuario) {
     console.log("ya definido usuario");
-    console.log(localStorage.nombreUsuario);
+    console.log(localStorage.titleUsuario);
     document.querySelector("#info").style.display = "block"
     document.querySelector("#login").style.display = "none";
 
@@ -75,17 +75,17 @@ function ingresarApp() {
                 alert("usuario no valido")
             }
             else {
-                let nombre = datos.datosUsuario.nombreUsuario;
+                let title = datos.datosUsuario.titleUsuario;
                 let id_usuario = datos.datosUsuario.id;
                 //---------------------------------------
-                localStorage.setItem("nombreUsuario", nombre)
+                localStorage.setItem("titleUsuario", title)
                 localStorage.setItem("idUsuario", id_usuario)
                 //-----------------------------------------
-                /* alert(`Hola ${localStorage.getItem("nombreUsuario")}`) */
+                /* alert(`Hola ${localStorage.getItem("titleUsuario")}`) */
                 document.querySelector("#info").style.display = "block"
                 document.querySelector("#login").style.display = "none"
-                alumnosCargados = datos.datosAlumnos;
-                mostrarAlumnos(alumnosCargados)
+                content = datos.content;
+                mostrarcontent(content)
             }
         })
 }
@@ -97,33 +97,33 @@ function getGenero()
 }
 
 //FUNCIONES
-function mostrarAlumnos(_alumnos) 
+function mostrarcontent(_content) 
 {
-    alumnosCargados = _alumnos
+    content = _content
     divDatos.innerHTML = "";
-    _alumnos.forEach(element => 
+    _content.forEach(element => 
     {
         // ${element._id}
-        divDatos.innerHTML += `<article class="col-md-3 mt-4 alert alert-secondary">
-            <h6 data-id="${element._id}"> - ${element.nombre} ${element.edad}  ${element.profesion}</h6>
-            <input data-idModificar="${element._id}" type="button" class="modificar" value="Modificar">
-            <input data-idEliminar="${element._id}" type="button" class="eliminar" value="Eliminar">
+        divDatos.innerHTML += `<article class="col-md-3 mt-4 alert alert-secondary mx-1">
+            <h6 data-id="${element._id}"> - ${element.title} ${element.year}  ${element.genero}</h6>
+            <input data-idModificar="${element._id}" type="button" class="modificar form-select-sm" value="Modificar">
+            <input data-idEliminar="${element._id}" type="button" class="eliminar form-select-sm" value="Eliminar">
             </article>`
     });
 
     let h1s = document.querySelectorAll("#datos h1");
     h1s.forEach(element => {
-        element.addEventListener("click", mostrarDatosUnAlumno)
+        element.addEventListener("click", mostrarDatosUncontent)
     });
     //----------------------------------------
     let bts_modificar = document.querySelectorAll(".modificar");
     bts_modificar.forEach(element => {
-        element.addEventListener("click", cargarDatosUnAlumnoModificar)
+        element.addEventListener("click", cargarDatosUncontentModificar)
     });
     //----------------------------------------
     let bts_eliminar = document.querySelectorAll(".eliminar");
     bts_eliminar.forEach(element => {
-        element.addEventListener("click", eliminarAlumno)
+        element.addEventListener("click", eliminarcontent)
     });
 }
 
@@ -138,101 +138,101 @@ function mostrarAlumnos(_alumnos)
     }) */
 
 //---------------------------------------------------
-//http://localhost:3000/alumnos
+//http://localhost:3000/content
 function mostrarDatos() {
-    fetch(`${url}/alumnos`)
+    fetch(`${url}/content`)
         .then(respuesta => respuesta.json())
         .then(datos => {
             console.log(datos);
-            alumnosCargados = datos
-            mostrarAlumnos(datos)
+            content = datos
+            mostrarcontent(datos)
         })
 }
-//mostrarDatosUnAlumno()
-//http://localhost:3000/alumnos/3
-function mostrarDatosUnAlumno() {
+//mostrarDatosUncontent()
+//http://localhost:3000/content/3
+function mostrarDatosUncontent() {
     let idLevantado = this.getAttribute("data-id");
     console.log(idLevantado)
-    //AMPLIACION LA HAGO EN ALUMNOSCARGADOS
- /*    fetch(`${url}/alumnos/${idLevantado}`)
+    //AMPLIACION LA HAGO EN content
+ /*    fetch(`${url}/content/${idLevantado}`)
         .then(respuesta => respuesta.json())
         .then(datos => {
             console.log(datos);
             //aca vendria que muestre los datos de ese elemento den el div
         }) */
 }
-//buscar alumnos()
+//buscar content()
 //http://localhost:3000/buscar?texto=er
-function buscarAlumno() {
+function buscarcontent() {
     let textoIngresadoBuscar = txtBuscar.value;
     console.log(textoIngresadoBuscar);
-    //BUSQUEDA LA HAGO EN ALUMNOSCARGADOS
+    //BUSQUEDA LA HAGO EN content
      fetch(`${url}/buscar?texto=${textoIngresadoBuscar}`)
         .then(respuesta => respuesta.json())
         .then(datos => {
-            alumnosCargados = datos
+            content = datos
             console.log(datos);
-            mostrarAlumnos(datos)
+            mostrarcontent(datos)
             //aca vendria que muestre los datos de ese elemento den el div
         }) 
 }
 
 //DIRECCIONAMIENTO POR POST
-function ingresarAlumno() {
-    let nombreIngresado = txtNombre.value;
-    let edadIngresada = parseInt(txtEdad.value);
-    let profesionIngresada = txtProfesion.value;
+function ingresarcontent() {
+    let titleIngresado = txttitle.value;
+    let yearIngresada = parseInt(txtyear.value);
+    let generoIngresada = txtgenero.value;
 
-    fetch(`${url}/alumnos`, {
+    fetch(`${url}/content`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            nombre: nombreIngresado,
-            edad: edadIngresada,
-            profesion: profesionIngresada,
+            title: titleIngresado,
+            year: yearIngresada,
+            genero: generoIngresada,
             id_Usuario:localStorage.getItem("idUsuario")
         })
     })
         .then(respuesta => respuesta.json())
         .then(datos => {
-            alumnosCargados.push(datos)
-            mostrarAlumnos(alumnosCargados);
+            content.push(datos)
+            mostrarcontent(content);
         })
 }
 //DIRECCIONAMIENTO POR PUT
 let idModificar;
-function cargarDatosUnAlumnoModificar() {
+function cargarDatosUncontentModificar() {
     console.log(this.getAttribute("data-idModificar"))
     idModificar = this.getAttribute("data-idModificar");
-    console.log(alumnosCargados);
-    alumnoModificar = alumnosCargados.find(alumno => alumno._id === idModificar)
-    console.log(alumnoModificar)
-    txtNombreModificar.value = alumnoModificar.nombre;
-    txtEdadModificar.value = parseInt(alumnoModificar.edad);
-    txtProfesionModificar.value = alumnoModificar.profesion;
+    console.log(content);
+    contentModificar = content.find(content => content._id === idModificar)
+    console.log(contentModificar)
+    txttitleModificar.value = contentModificar.title;
+    txtyearModificar.value = parseInt(contentModificar.year);
+    txtgeneroModificar.value = contentModificar.genero;
 
 
     //-------------------------------------------
-    btModificarAlumno.addEventListener("click", modificarAlumno)
+    btModificarcontent.addEventListener("click", modificarcontent)
 }
-function modificarAlumno() {
+function modificarcontent() {
 
-    alumnoModificar.nombre = txtNombreModificar.value;
-    alumnoModificar.edad = parseInt(txtEdadModificar.value);
-    alumnoModificar.profesion = txtProfesionModificar.value
-    mostrarAlumnos(alumnosCargados)
-    fetch(`${url}/alumnos`, {
+    contentModificar.title = txttitleModificar.value;
+    contentModificar.year = parseInt(txtyearModificar.value);
+    contentModificar.genero = txtgeneroModificar.value
+    mostrarcontent(content)
+    fetch(`${url}/content`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
             id: idModificar,
-            nombre: txtNombreModificar.value,
-            edad: txtEdadModificar.value,
-            profesion: txtProfesionModificar.value
+            title: txttitleModificar.value,
+            year: txtyearModificar.value,
+            genero: txtgeneroModificar.value
         })
     })
         .then(respuesta => respuesta.json())
@@ -241,15 +241,15 @@ function modificarAlumno() {
         })
 }
 //DIRECCIONAMIENTO POR DELETE
-function eliminarAlumno() {
+function eliminarcontent() {
     console.log(this.getAttribute("data-idEliminar"))
     let idEliminar = this.getAttribute("data-idEliminar");
-    let posicionEliminar = alumnosCargados.findIndex(alumno => alumno._id === idEliminar);
+    let posicionEliminar = content.findIndex(content => content._id === idEliminar);
     console.log(posicionEliminar);
-    alumnosCargados.splice(posicionEliminar, 1)
-    mostrarAlumnos(alumnosCargados)
+    content.splice(posicionEliminar, 1)
+    mostrarcontent(content)
 
-    fetch(`${url}/alumnos/${idEliminar}`, {
+    fetch(`${url}/content/${idEliminar}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
@@ -258,6 +258,6 @@ function eliminarAlumno() {
         .then(respuesta => respuesta.json())
         .then(datos => {
             console.log(datos);
-            //mostrarAlumnos(datos)
+            //mostrarcontent(datos)
         })
 }

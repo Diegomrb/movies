@@ -1,7 +1,7 @@
 # movies
 - Iniciar sesión o registrarse en caso de no tener cuenta. 
 
-- Agregar la película o la serie desde el formulario. Agregar nombre (único campo obligatorio) (si no tiene nombre no podría estar habilitado el botón de agregar), seleccionar en el radio button si es pelicula o serie, escribir el año,  seleccionar el genero desde la lista (select), escribir una descripción.
+- Agregar la película o la serie desde el formulario. Agregar title (único campo obligatorio) (si no tiene title no podría estar habilitado el botón de agregar), seleccionar en el radio button si es pelicula o serie, escribir el año,  seleccionar el genero desde la lista (select), escribir una descripción.
 
 - Al darle al botón de agregar que se agregue a la base de datos y se muestre en el listado que se encontraría a la izquierda.
 

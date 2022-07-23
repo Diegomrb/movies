@@ -29,12 +29,12 @@
                 <div class="row">
                    <div class="col-md-7">
                     <h1>Ingresar pelicula o serie</h1>
-                    <label for="txt_nombre">Titulo</label>
-                    <input type="text" id="txt_nombre" class="form-control" placeholder="TITULO" required>  
-                    <label for="txt_edad" class="mt-1">AÑO</label>
-                    <input type="number" id="txt_edad" class="form-control" placeholder="AÑO" required> 
-                    <label for="txt_profesion">CATEGORIA</label>
-                    <select class="form-select" id="txt_profesion" aria-label="Default select example">
+                    <label for="title_">Titulo</label>
+                    <input type="text" id="title_" class="form-control" placeholder="TITULO" required>  
+                    <label for="year_" class="mt-1">AÑO</label>
+                    <input type="number" id="year_" class="form-control" placeholder="AÑO" required> 
+                    <label for="category">CATEGORIA</label>
+                    <select class="form-select form-select-sm" id="category" aria-label="Default select example">
                         <option selected>Seleciona una categoria</option>
                         <option value="PELICULA">PELICULA</option>
                         <option value="SERIE">SERIE</option> 
@@ -42,7 +42,7 @@
                     <hr>
                     <input type="button" id="bt_mostrar" value="LISTAR" class="btn btn-info">
                     <input type="button" value="REGISTRAR" id="bt_ingresar" class="btn btn-info">
-                    <input type="button" value="MODIFICAR" id="bt_modificar_alumno" class="btn btn-primary">
+                    <input type="button" value="MODIFICAR" id="bt_modificar_content" class="btn btn-primary">
                     <input type="text" id="txt_buscar" placeholder="BUSCAR"  >
                 
                     <input type="button" value="BUSCAR" id="bt_buscar" class="btn btn-info mt-1">

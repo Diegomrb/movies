@@ -12,7 +12,7 @@ app.use(cors());
 mongoose.connect(DATABASE_URL);  
 let db = mongoose.connection;
 db.once("open", () => console.log("session active"))
-let Alumno = require("./models/Alumno");
+let Content = require("./models/Content");
 let Usuario = require("./models/Usuario");
 let service = require("./services/MovieService");
 
@@ -32,11 +32,11 @@ app.post("/", (req, res) =>
                  id_valido = true;
                  console.log(unUsuario)
                  console.log(unUsuario._id);
-                 Alumno.find({id_Usuario: unUsuario._id}, (err, alumnos) => { if (err) { return console.log(err)} 
+                 Content.find({id_Usuario: unUsuario._id}, (err, content) => { if (err) { return console.log(err)} 
                         else 
                         {
-                         console.log(alumnos)
-                         res.json({ datosUsuario: {id_valido: true,id: unUsuario._id,nombreUsuario: unUsuario.user},datosAlumnos: alumnos
+                         console.log(content)
+                         res.json({ datosUsuario: {id_valido: true,id: unUsuario._id,titleUsuario: unUsuario.user},content: content
                          })
                      }
                  })
@@ -63,39 +63,39 @@ app.get("/cerrar", (req, res) =>
     res.json({mensaje: "sesion cerrada"});
 })
  
-app.get("/alumnos", (req, res) => 
+app.get("/content", (req, res) => 
 {
-    Alumno.find((err, alumnos) => { if (err) { return console.log(err) } 
+    Content.find((err, content) => { if (err) { return console.log(err) } 
           else 
           {
-            console.log(alumnos)
-            res.json(alumnos)
+            console.log(content);
+            res.json(content);
           }
       })
 })
 
-app.get("/alumnos/:id", (req, res) => 
+app.get("/content/:id", (req, res) => 
 {
     let idBuscar = req.params.id
     console.log(idBuscar);
-    Alumno.findOne({ _id: idBuscar },(err, alumnos) => { if (err) { return console.log(err) } 
+    Content.findOne({ _id: idBuscar },(err, content) => { if (err) { return console.log(err) } 
           else 
            {
-                console.log(alumnos)
-                res.json(alumnos)
+                console.log(content)
+                res.json(content)
             }
         })
 })
 
  
-app.post("/alumnos", (req, res) => 
+app.post("/content", (req, res) => 
 {
     console.log(service.say());
     console.log(req.body);
-    console.log(req.body.nombre);
+    console.log(req.body.title);
 
-    let persona = new Alumno({ nombre: req.body.nombre, edad: req.body.edad, profesion: req.body.profesion, id_Usuario: req.body.id_Usuario,})
-    persona.save((err, alumno) => { if (err) { console.log(err) } 
+    let content = new Content({ title: req.body.title, year: req.body.year, genero: req.body.genero, id_Usuario: req.body.id_Usuario,})
+    content.save((err, alumno) => { if (err) { console.log(err) } 
        else 
        {
             res.json(alumno)
@@ -103,33 +103,30 @@ app.post("/alumnos", (req, res) =>
     })
 })
 
-app.put("/alumnos", (req, res) => 
+app.put("/content", (req, res) => 
 {
     console.log(req.body);
-    let idModificar = req.body.id;
-    let nombreModificar = req.body.nombre;
-    let edadModificar = parseInt(req.body.edad);
-    let profesionModificar = req.body.profesion;
- 
-    Alumno.findByIdAndUpdate(idModificar, { nombre: nombreModificar, edad: edadModificar, profesion: profesionModificar }, (err, alumno) => { if (err) { console.log(err) } 
+    Content.findByIdAndUpdate(req.body.id, { 
+        title:  req.body.title, year: parseInt(req.body.year), genero: req.body.genero }, 
+        (err, content) => { if (err) { console.log(err) } 
     else 
         {
-            console.log(alumno)
-            res.json(alumno)
+            console.log(content)
+            res.json(content)
         }
     })
 
 })
 
-app.delete("/alumnos/:idEliminar", (req, res) => 
+app.delete("/content/:idEliminar", (req, res) => 
 {
     console.log(req.params.idEliminar);
     let idEliminar = req.params.idEliminar;
     console.log(idEliminar);
-    Alumno.findByIdAndDelete(idEliminar, (err, alumno) => { if (err)  { console.log(err) } 
+    Content.findByIdAndDelete(idEliminar, (err, content) => { if (err)  { console.log(err) } 
         else 
         {
-            res.json(alumno)
+            res.json(content)
         }
     })
 })
