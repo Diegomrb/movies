@@ -104,7 +104,7 @@ function mostrarAlumnos(_alumnos)
     _alumnos.forEach(element => 
     {
         // ${element._id}
-        divDatos.innerHTML += `<article class="col-md-3 mt-4">
+        divDatos.innerHTML += `<article class="col-md-3 mt-4 alert alert-secondary">
             <h6 data-id="${element._id}"> - ${element.nombre} ${element.edad}  ${element.profesion}</h6>
             <input data-idModificar="${element._id}" type="button" class="modificar" value="Modificar">
             <input data-idEliminar="${element._id}" type="button" class="eliminar" value="Eliminar">
