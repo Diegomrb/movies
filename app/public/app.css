@@ -4,7 +4,20 @@
 background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(61, 147, 234) 35%, rgb(221, 0, 255) 100%);
 }
 
-
+.global {
+	height: 600px;
+	width: 100%;
+	border: 1px solid #ddd;
+	background: #f1f1f1;
+	overflow-y: scroll;
+}
+.mensajes {
+	height: auto;
+}
+.texto {
+	padding:4px;
+	background:#fff;
+}
 
 /* app modal */
 
