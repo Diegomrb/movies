@@ -15,7 +15,7 @@ db.once("open", () => console.log("session active"))
 let Alumno = require("./models/Alumno");
 let Usuario = require("./models/Usuario");
 app.use(express.json());  
-app.use("/", express.static("frontend"))
+app.use("/", express.static("public"))
 
 app.post("/", (req, res) => 
 {
