@@ -20,7 +20,6 @@
                     <label for="txt_pass">PASSWORD</label>
                     <input type="text" id="txt_pass" value="admin" class="form-control">
                     <input type="button" value="ACCEDER" id="bt_loguear" class="btn btn-info mt-1">
-                    <input type="button" value="REGISTRAR" id="bt_registrar" class="btn btn-info mt-1">
                    </div>
                </div>
             </div>
@@ -75,6 +74,15 @@
                     <input type="button" id="bt_mostrar" value="LISTAR" class="btn btn-info" hidden>
                     <input type="button" value="Registrar" id="bt_ingresar" class="btn input">
                     <input type="button" value="Actualizar" id="bt_modificar_content" class="btn input">
+                     <hr>
+                     <form action="create" method="post">
+                        <label for="txt_user">USERNAME</label>
+                        <input type="text" id="username" value="" name="user" class="form-control" placeholder="Nombre de usuario">
+                        <label for="txt_pass">PASSWORD</label>
+                        <input type="password" id="password" value="" name="pass" class="form-control" placeholder="Contraseña">
+                        <input type="button" value="Crear cuenta" id="create_usr" class="btn btn-info mt-1" >
+                     </form>
+                     <hr>
                    </div>            
                 </div>
             </div>

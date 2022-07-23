@@ -7,8 +7,11 @@ let buscar_ = document.querySelector("#txt_buscar");
 let btBuscar = document.querySelector("#bt_buscar");
 
 let btn_ingresar = document.querySelector("#bt_ingresar");
+let btn_create_usr = document.querySelector("#create_usr");
 let btModificarcontent = document.querySelector("#bt_modificar_content");
 let divDatos = document.querySelector("#datos");
+
+btn_create_usr.addEventListener("click",create_user);
 btn_mostrar.addEventListener("click", mostrarDatos);
 btBuscar.addEventListener("click", buscarcontent);
 btn_ingresar.addEventListener("click", save);
@@ -26,18 +29,18 @@ let contentModificar;
 let idModificar;
 
 
-function create_user(user_,pass_) 
+function create_user() 
 {
     fetch(`${url}/create`, {
         method: "POST", headers: { "Content-Type": "application/json"},
         body: JSON.stringify({
-            user: user_,
-            pass: pass_
+            user: document.querySelector("#username").value,
+            pass: document.querySelector("#password").value
         })})
     .then(respuesta => respuesta.json())
-    .then(datos => {
-       console.log(datos);
-    })
+    .then(datos => { console.log(datos); })
+    document.querySelector("#username").value = "";
+    document.querySelector("#password").value = "";
 }
 
 
