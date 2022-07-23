@@ -16,7 +16,7 @@ btLoguear.addEventListener("click", ingresarApp);
 
 let title_ = document.querySelector("#title");
 let year_ = document.querySelector("#year");
-let category_ = document.querySelector("#category");
+let category_ = document.querySelector('[name="category"]');
 let status_ = document.querySelector("#status");
 let genero_ = document.querySelector("#genero");
 let description_ = document.querySelector("#description")
@@ -43,7 +43,28 @@ function mostrarDatos() {
         })
 }
 
+function checkCategory(category) 
+{
+    if(category==="PELICULA") {
+        document.querySelector("#category_0").click();
+    }
+    if(category==="SERIE") 
+    {
+        document.querySelector("#category_1").click();
+    }
+}
 
+function getCategory()
+{
+    var radios = document.getElementsByName('category');
+    for (var radio of radios)
+    {
+        if (radio.checked) {
+            return radio.value;
+        }
+    }
+    return "";
+}
 // save and show data mostrarDatos()
 function save() 
 {
@@ -53,7 +74,7 @@ function save()
                 title: title_.value,
                 year: parseInt(year_.value),
                 genero : genero_.value,
-                category: category_.value,
+                category: getCategory(),
                 status: status_.value,
                 description:description_.value,
                 id_Usuario: localStorage.getItem("idUsuario")
@@ -69,11 +90,12 @@ function update()
 {
     contentModificar.title = title_.value;
     contentModificar.year = parseInt(year_.value);
-    contentModificar.category = category_.value;
+    contentModificar.category =  getCategory();
     contentModificar.genero = genero_.value;
     contentModificar.status = status_.value;
     contentModificar.description = description_.value;
-    
+    //checkCategory(contentModificar.category);
+
     mostrarcontent(content)
     fetch(`${url}/content`, {
             method: "PUT",
@@ -85,7 +107,7 @@ function update()
                 title: title_.value,
                 year: year_.value,
                 genero : genero_.value,
-                category: category_.value,
+                category:  getCategory(),
                 status: status_.value,
                 description:description_.value,
             })
@@ -106,7 +128,7 @@ function editContent()
     console.log(contentModificar);
     title_.value = contentModificar.title;
     year_.value = parseInt(contentModificar.year);
-    category_.value = contentModificar.category;
+    checkCategory(contentModificar.category);
     genero_.value = contentModificar.genero;
     status_.value = contentModificar.status;
     description_.value = contentModificar.description;
@@ -171,12 +193,6 @@ function ingresarApp()
                 mostrarcontent(content)
             }
         })
-}
-
-function getGenero() 
-{
-    var category = document.getElementById("category");
-    return category.value;
 }
 
 function mostrarcontent(_content) 

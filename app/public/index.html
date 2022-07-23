@@ -55,12 +55,19 @@
                     <input type="text" id="title" class="form-control fondo_input" placeholder="TITULO" required>  
                     <label for="year_" class="mt-1">AÑO</label>
                     <input type="number" id="year" class="form-control fondo_input" placeholder="AÑO" required> 
-                    <label for="category">CATEGORIA</label>
-                    <select class="form-select form-select-sm fondo_input" id="category" aria-label="Default select example">
+                    <label for="category">CATEGORIA</label> <br>
+                    <select class="form-select form-select-sm fondo_input" id="category" aria-label="Default select example" hidden>
                         <option selected>Seleciona una categoria</option>
                         <option value="PELICULA">PELICULA</option>
                         <option value="SERIE">SERIE</option> 
                       </select>
+                    
+                      <input type="radio" id="category_0" name="category" value="PELICULA">
+                       <label for="PELICULA">Pelicula</label><br>
+                       <input type="radio" id="category_1" name="category" value="SERIE">
+                       <label for="SERIE">Serie</label><br>
+
+
                       <label for="genero">GENERO</label>
                       <select class="form-select form-select-sm fondo_input" id="genero" aria-label="Default select example">
                         <option value="FICCION">FICCION</option>
