@@ -34,7 +34,12 @@
                     <label for="txt_edad" class="mt-1">AÑO</label>
                     <input type="number" id="txt_edad" class="form-control" placeholder="AÑO" required> 
                     <label for="txt_profesion">CATEGORIA</label>
-                    <input type="text" id="txt_profesion" class="form-control" placeholder="CATEGORIA">
+                    <select class="form-select" id="txt_profesion" aria-label="Default select example">
+                        <option selected>Seleciona una categoria</option>
+                        <option value="PELICULA">PELICULA</option>
+                        <option value="SERIE">SERIE</option> 
+                      </select>
+                    <hr>
                     <input type="button" id="bt_mostrar" value="LISTAR" class="btn btn-info">
                     <input type="button" value="REGISTRAR" id="bt_ingresar" class="btn btn-info">
                     <input type="button" value="MODIFICAR" id="bt_modificar_alumno" class="btn btn-primary">
