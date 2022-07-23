@@ -5,15 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FRONT</title>
+    <title>Movie List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-      
+    
 </head>
 
 <body>
     <div class="modal_form  mt-5">
         <div class="">
-            <div id="login">
+            <div id="login" class="container mt-1">
                
                     <label for="txt_user">usuario</label>
                     <input type="text" id="txt_user" value="admin" class="form-control">
@@ -25,17 +25,16 @@
             </div>
             <div id="info" style="display: none" class="container mt-1">
                 
-                <input type="button" id="bt_cerrar" value="cerrar session" class="btn btn-warning mt-1 pull-left">
-                <hr>
+                <input type="button" id="bt_cerrar" value="SALIR" class="btn btn-warning float-end">
                 <div class="row">
-                   <div class="col-md-6">
-                    <h1>Registrar  </h1>
-                    <label for="txt_nombre">Nombre</label>
-                    <input type="text" id="txt_nombre" class="form-control">
-                    <label for="txt_edad">Edad</label>
-                    <input type="text" id="txt_edad" class="form-control">
-                    <label for="txt_profesion">Profesión</label>
-                    <input type="text" id="txt_profesion" class="form-control">
+                   <div class="col-md-7">
+                    <h1>Ingresar pelicula o serie</h1>
+                    <label for="txt_nombre">Titulo</label>
+                    <input type="text" id="txt_nombre" class="form-control" placeholder="TITULO" required>  
+                    <label for="txt_edad" class="mt-1">AÑO</label>
+                    <input type="number" id="txt_edad" class="form-control" placeholder="AÑO" required> 
+                    <label for="txt_profesion">CATEGORIA</label>
+                    <input type="text" id="txt_profesion" class="form-control" placeholder="CATEGORIA">
                     <input type="button" id="bt_mostrar" value="LISTAR" class="btn btn-info">
                     <input type="button" value="REGISTRAR" id="bt_ingresar" class="btn btn-info">
                     <input type="button" value="MODIFICAR" id="bt_modificar_alumno" class="btn btn-primary">

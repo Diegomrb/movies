@@ -49,6 +49,7 @@ btLoguear.addEventListener("click", ingresarApp)
 
 if (localStorage.idUsuario) {
     console.log("ya definido usuario");
+    console.log(localStorage.nombreUsuario);
     document.querySelector("#info").style.display = "block"
     document.querySelector("#login").style.display = "none";
 
@@ -89,6 +90,11 @@ function ingresarApp() {
         })
 }
 
+function getGenero()
+{
+    var genero = document.getElementById("genero");
+    return genero.value;
+}
 
 //FUNCIONES
 function mostrarAlumnos(_alumnos) 
@@ -98,7 +104,7 @@ function mostrarAlumnos(_alumnos)
     _alumnos.forEach(element => 
     {
         // ${element._id}
-        divDatos.innerHTML += `<article class="col-md-3 content">
+        divDatos.innerHTML += `<article class="col-md-3 mt-4">
             <h6 data-id="${element._id}"> - ${element.nombre} ${element.edad}  ${element.profesion}</h6>
             <input data-idModificar="${element._id}" type="button" class="modificar" value="Modificar">
             <input data-idEliminar="${element._id}" type="button" class="eliminar" value="Eliminar">
@@ -161,14 +167,14 @@ function buscarAlumno() {
     let textoIngresadoBuscar = txtBuscar.value;
     console.log(textoIngresadoBuscar);
     //BUSQUEDA LA HAGO EN ALUMNOSCARGADOS
-    /* fetch(`${url}/buscar?texto=${textoIngresadoBuscar}`)
+     fetch(`${url}/buscar?texto=${textoIngresadoBuscar}`)
         .then(respuesta => respuesta.json())
         .then(datos => {
             alumnosCargados = datos
             console.log(datos);
             mostrarAlumnos(datos)
             //aca vendria que muestre los datos de ese elemento den el div
-        }) */
+        }) 
 }
 
 //DIRECCIONAMIENTO POR POST
@@ -196,7 +202,7 @@ function ingresarAlumno() {
         })
 }
 //DIRECCIONAMIENTO POR PUT
-let idModificar
+let idModificar;
 function cargarDatosUnAlumnoModificar() {
     console.log(this.getAttribute("data-idModificar"))
     idModificar = this.getAttribute("data-idModificar");
