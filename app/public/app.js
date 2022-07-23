@@ -35,9 +35,9 @@ let txtEdad = document.querySelector("#txt_edad");
 let txtProfesion = document.querySelector("#txt_profesion");
 let btIngresar = document.querySelector("#bt_ingresar")
 //-----------------------------------------------
-let txtNombreModificar = document.querySelector("#txt_nombre_modificar");
-let txtEdadModificar = document.querySelector("#txt_edad_modificar");
-let txtProfesionModificar = document.querySelector("#txt_profesion_modificar");
+let txtNombreModificar = document.querySelector("#txt_nombre"); //document.querySelector("#txt_nombre_modificar");
+let txtEdadModificar = document.querySelector("#txt_edad"); //document.querySelector("#txt_edad_modificar");
+let txtProfesionModificar = document.querySelector("#txt_profesion"); //document.querySelector("#txt_profesion_modificar");
 let btModificarAlumno = document.querySelector("#bt_modificar_alumno")
 //-----------------------------------------------
 let divDatos = document.querySelector("#datos");
@@ -91,18 +91,18 @@ function ingresarApp() {
 
 
 //FUNCIONES
-function mostrarAlumnos(_alumnos) {
+function mostrarAlumnos(_alumnos) 
+{
     alumnosCargados = _alumnos
     divDatos.innerHTML = "";
-    _alumnos.forEach(element => {
-        divDatos.innerHTML += `
-    <article>
-    <h1 data-id="${element._id}">${element._id} - ${element.nombre}</h1>
-    <p>${element.edad}</p>
-    <p>${element.profesion}</p>
-    <input data-idModificar="${element._id}" type="button" class="modificar" value="Modificar">
-    <input data-idEliminar="${element._id}" type="button" class="eliminar" value="Eliminar">
-    </article>`
+    _alumnos.forEach(element => 
+    {
+        // ${element._id}
+        divDatos.innerHTML += `<article class="col-md-3 content">
+            <h6 data-id="${element._id}"> - ${element.nombre} ${element.edad}  ${element.profesion}</h6>
+            <input data-idModificar="${element._id}" type="button" class="modificar" value="Modificar">
+            <input data-idEliminar="${element._id}" type="button" class="eliminar" value="Eliminar">
+            </article>`
     });
 
     let h1s = document.querySelectorAll("#datos h1");

@@ -14,6 +14,8 @@ let db = mongoose.connection;
 db.once("open", () => console.log("session active"))
 let Alumno = require("./models/Alumno");
 let Usuario = require("./models/Usuario");
+let service = require("./services/MovieService");
+
 app.use(express.json());  
 app.use("/", express.static("public"))
 
@@ -72,7 +74,6 @@ app.get("/alumnos", (req, res) =>
       })
 })
 
-//http://localhost:3000/alumnos/3
 app.get("/alumnos/:id", (req, res) => 
 {
     let idBuscar = req.params.id
@@ -89,6 +90,7 @@ app.get("/alumnos/:id", (req, res) =>
  
 app.post("/alumnos", (req, res) => 
 {
+    console.log(service.say());
     console.log(req.body);
     console.log(req.body.nombre);
 
