@@ -1,83 +1,59 @@
 let url = "http://localhost:3000";
-//VARIABLES GLOBALES
-let content;//array content que viene de la coleccion
-let contentModificar//
-//ELEMENTOS
-let btCerrar = document.querySelector("#bt_cerrar");
-btCerrar.addEventListener("click",function(){
-    localStorage.clear();
-    document.querySelector("#info").style.display = "none"
-    document.querySelector("#login").style.display = "block";
-    content=[];
-    fetch(`${url}/cerrar`)
-        .then(respuesta=>respuesta.json())
-        .then(datos=>{
-            console.log(datos)
-        })
-    
-})
-
-
-
+let content;
+let contentModificar;
+let idModificar;
 let btLoguear = document.querySelector("#bt_loguear");
-
-
-let txtUser = document.querySelector("#txt_user");
-let txtPass = document.querySelector("#txt_pass");
-//------------------------------------------------------
-let btMostrar = document.querySelector("#bt_mostrar")
-//------------------------------------------------------
-let txtBuscar = document.querySelector("#txt_buscar")
-let btBuscar = document.querySelector("#bt_buscar")
-//-------------------------------------------------
-let txttitle = document.querySelector("#title_");
-let txtyear = document.querySelector("#year_");
-let txtgenero = document.querySelector("#category");
-let btIngresar = document.querySelector("#bt_ingresar")
-//-----------------------------------------------
-let txttitleModificar = document.querySelector("#title_"); //document.querySelector("#title__modificar");
-let txtyearModificar = document.querySelector("#year_"); //document.querySelector("#year__modificar");
-let txtgeneroModificar = document.querySelector("#category"); //document.querySelector("#category_modificar");
-let btModificarcontent = document.querySelector("#bt_modificar_content")
-//-----------------------------------------------
+let username_form = document.querySelector("#txt_user");
+let pass_form = document.querySelector("#txt_pass");
+let btn_mostrar = document.querySelector("#bt_mostrar");
+let buscar_ = document.querySelector("#txt_buscar");
+let btBuscar = document.querySelector("#bt_buscar");
+let title_ = document.querySelector("#title_");
+let year_ = document.querySelector("#year_");
+let genero_ = document.querySelector("#category");
+let btn_ingresar = document.querySelector("#bt_ingresar");
+let btModificarcontent = document.querySelector("#bt_modificar_content");
 let divDatos = document.querySelector("#datos");
-//EVENTOS
-btMostrar.addEventListener("click", mostrarDatos);
-btBuscar.addEventListener("click", buscarcontent)
-btIngresar.addEventListener("click", ingresarcontent)
-btLoguear.addEventListener("click", ingresarApp)
+btn_mostrar.addEventListener("click", mostrarDatos);
+btBuscar.addEventListener("click", buscarcontent);
+btn_ingresar.addEventListener("click", ingresarcontent);
+btLoguear.addEventListener("click", ingresarApp);
 
-if (localStorage.idUsuario) {
+
+if (localStorage.idUsuario)
+{
     console.log("ya definido usuario");
     console.log(localStorage.titleUsuario);
     document.querySelector("#info").style.display = "block"
     document.querySelector("#login").style.display = "none";
-
 }
 
-function ingresarApp() {
-    let userIngresado = txtUser.value;
-    let passIngresada = txtPass.value;
+function ingresarApp() 
+{
+    let username = username_form.value;
+    let password = pass_form.value;
     fetch(`${url}/`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            user: userIngresado,
-            pass: passIngresada
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                user: username,
+                pass: password
+            })
         })
-    })
         .then(respuesta => respuesta.json())
-        .then(datos => {
+        .then(datos => 
+            {
             console.log(datos)
-            if (datos.id_valido === false) {
+            if (datos.id_valido === false) 
+            {
                 alert("usuario no valido")
-            }
-            else {
+            } 
+            else 
+            {
                 let title = datos.datosUsuario.titleUsuario;
                 let id_usuario = datos.datosUsuario.id;
-                //---------------------------------------
                 localStorage.setItem("titleUsuario", title)
                 localStorage.setItem("idUsuario", id_usuario)
                 //-----------------------------------------
@@ -90,19 +66,17 @@ function ingresarApp() {
         })
 }
 
-function getGenero()
+function getGenero() 
 {
     var genero = document.getElementById("genero");
     return genero.value;
 }
 
-//FUNCIONES
 function mostrarcontent(_content) 
 {
     content = _content
     divDatos.innerHTML = "";
-    _content.forEach(element => 
-    {
+    _content.forEach(element => {
         // ${element._id}
         divDatos.innerHTML += `<article class="col-md-12 mt-4 alert alert-secondary mx-1" style="background-color: white;">
             <h6 data-id="${element._id}"> <b><h4> ${element.title}</h4></b> ${element.year}  ${element.genero}</h6>
@@ -127,9 +101,6 @@ function mostrarcontent(_content)
     });
 }
 
-//DIRECCIONAMIENTOS POR GET
-
-//direccionamiento a la raiz
 /* fetch(url)
     .then(respuesta => respuesta.text()
     )
@@ -137,7 +108,6 @@ function mostrarcontent(_content)
         divDatos.innerHTML = datos;
     }) */
 
-//---------------------------------------------------
 //http://localhost:3000/content
 function mostrarDatos() {
     fetch(`${url}/content`)
@@ -154,110 +124,125 @@ function mostrarDatosUncontent() {
     let idLevantado = this.getAttribute("data-id");
     console.log(idLevantado)
     //AMPLIACION LA HAGO EN content
- /*    fetch(`${url}/content/${idLevantado}`)
-        .then(respuesta => respuesta.json())
-        .then(datos => {
-            console.log(datos);
-            //aca vendria que muestre los datos de ese elemento den el div
-        }) */
+    /*    fetch(`${url}/content/${idLevantado}`)
+           .then(respuesta => respuesta.json())
+           .then(datos => {
+               console.log(datos);
+               //aca vendria que muestre los datos de ese elemento den el div
+           }) */
 }
 //buscar content()
 //http://localhost:3000/buscar?texto=er
 function buscarcontent() {
-    let textoIngresadoBuscar = txtBuscar.value;
+    let textoIngresadoBuscar = buscar_.value;
     console.log(textoIngresadoBuscar);
     //BUSQUEDA LA HAGO EN content
-     fetch(`${url}/buscar?texto=${textoIngresadoBuscar}`)
+    fetch(`${url}/buscar?texto=${textoIngresadoBuscar}`)
         .then(respuesta => respuesta.json())
         .then(datos => {
             content = datos
             console.log(datos);
             mostrarcontent(datos)
             //aca vendria que muestre los datos de ese elemento den el div
-        }) 
+        })
 }
 
-//DIRECCIONAMIENTO POR POST
-function ingresarcontent() {
-    let titleIngresado = txttitle.value;
-    let yearIngresada = parseInt(txtyear.value);
-    let generoIngresada = txtgenero.value;
+function ingresarcontent() 
+{
+    let titleIngresado = title_.value;
+    let yearIngresada = parseInt(year_.value);
+    let generoIngresada = genero_.value;
 
     fetch(`${url}/content`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            title: titleIngresado,
-            year: yearIngresada,
-            genero: generoIngresada,
-            id_Usuario:localStorage.getItem("idUsuario")
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                title: titleIngresado,
+                year: yearIngresada,
+                genero: generoIngresada,
+                id_Usuario: localStorage.getItem("idUsuario")
+            })
         })
-    })
         .then(respuesta => respuesta.json())
         .then(datos => {
             content.push(datos)
             mostrarcontent(content);
         })
 }
-//DIRECCIONAMIENTO POR PUT
-let idModificar;
-function cargarDatosUncontentModificar() {
+
+
+function cargarDatosUncontentModificar() 
+{
     console.log(this.getAttribute("data-idModificar"))
     idModificar = this.getAttribute("data-idModificar");
     console.log(content);
     contentModificar = content.find(content => content._id === idModificar)
     console.log(contentModificar)
-    txttitleModificar.value = contentModificar.title;
-    txtyearModificar.value = parseInt(contentModificar.year);
-    txtgeneroModificar.value = contentModificar.genero;
-
-
-    //-------------------------------------------
+    title_.value = contentModificar.title;
+    year_.value = parseInt(contentModificar.year);
+    genero_.value = contentModificar.genero;
     btModificarcontent.addEventListener("click", modificarcontent)
 }
-function modificarcontent() {
 
-    contentModificar.title = txttitleModificar.value;
-    contentModificar.year = parseInt(txtyearModificar.value);
-    contentModificar.genero = txtgeneroModificar.value
+function modificarcontent() 
+{
+    contentModificar.title = title_.value;
+    contentModificar.year = parseInt(year_.value);
+    contentModificar.genero = genero_.value
     mostrarcontent(content)
     fetch(`${url}/content`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            id: idModificar,
-            title: txttitleModificar.value,
-            year: txtyearModificar.value,
-            genero: txtgeneroModificar.value
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id: idModificar,
+                title: title_.value,
+                year: year_.value,
+                genero: genero_.value
+            })
         })
-    })
         .then(respuesta => respuesta.json())
         .then(datos => {
             console.log(datos)
         })
 }
-//DIRECCIONAMIENTO POR DELETE
-function eliminarcontent() {
+
+function eliminarcontent() 
+{
     console.log(this.getAttribute("data-idEliminar"))
     let idEliminar = this.getAttribute("data-idEliminar");
     let posicionEliminar = content.findIndex(content => content._id === idEliminar);
     console.log(posicionEliminar);
     content.splice(posicionEliminar, 1)
     mostrarcontent(content)
-
     fetch(`${url}/content/${idEliminar}`, {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
         .then(respuesta => respuesta.json())
         .then(datos => {
             console.log(datos);
             //mostrarcontent(datos)
         })
 }
+
+let btCerrar = document.querySelector("#bt_cerrar");
+btCerrar.addEventListener("click", function () {
+    localStorage.clear();
+    document.querySelector("#info").style.display = "none"
+    document.querySelector("#login").style.display = "block";
+    content = [];
+    fetch(`${url}/cerrar`)
+        .then(respuesta => respuesta.json())
+        .then(datos => {
+            console.log(datos)
+        })
+
+});
+
+mostrarDatos()
