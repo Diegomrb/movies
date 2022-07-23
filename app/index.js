@@ -14,7 +14,6 @@ let db = mongoose.connection;
 db.once("open", () => console.log("session active"))
 let Content = require("./models/Content");
 let Usuario = require("./models/Usuario");
-let service = require("./services/MovieService");
 
 app.use(express.json());  
 app.use("/", express.static("public"))
@@ -90,15 +89,30 @@ app.get("/content/:id", (req, res) =>
  
 app.post("/content", (req, res) => 
 {
-    console.log(service.say());
+    console.log("save ---------");
     console.log(req.body);
     console.log(req.body.title);
 
-    let content = new Content({ title: req.body.title, year: req.body.year, genero: req.body.genero, id_Usuario: req.body.id_Usuario,})
-    content.save((err, alumno) => { if (err) { console.log(err) } 
+    console.log(req.body.title);
+    console.log(req.body.year);
+    console.log(req.body.category);
+    console.log(req.body.genero);
+    console.log(req.body.status);
+    console.log(req.body.description);
+
+    let content = new Content({ 
+        title: req.body.title, 
+        year: req.body.year, 
+        genero: req.body.genero,
+        status: req.body.status,
+        category: req.body.category,
+        description: req.body.description,
+        id_Usuario: req.body.id_Usuario})
+        
+        content.save((err, content_) => { if (err) { console.log(err) } 
        else 
        {
-            res.json(alumno)
+            res.json(content_)
         }
     })
 })
@@ -107,7 +121,13 @@ app.put("/content", (req, res) =>
 {
     console.log(req.body);
     Content.findByIdAndUpdate(req.body.id, { 
-        title:  req.body.title, year: parseInt(req.body.year), genero: req.body.genero }, 
+        title:  req.body.title, 
+        year: parseInt(req.body.year), 
+        genero: req.body.genero,
+        status: req.body.status,
+        category: req.body.category,
+        description: req.body.description
+    }, 
         (err, content) => { if (err) { console.log(err) } 
     else 
         {

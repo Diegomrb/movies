@@ -10,3 +10,8 @@
 - Una vez que se tiene un listado de varias películas filtrarlas por categoría, genero, o estado (el estado es si ya se vió o no, dependería de si tiene el tick o no)
 
 - Botón para cerrar sesión y poder ingresar con otro usuario, en el que se podría ingresar otras películas para ese usuario.
+
+
+Email: diegomartinrivero@gmail.com
+Password: diegomartin123
+https://www.mongodb.com/cloud
