@@ -25,6 +25,22 @@ let content;
 let contentModificar;
 let idModificar;
 
+
+function create_user(user_,pass_) 
+{
+    fetch(`${url}/create`, {
+        method: "POST", headers: { "Content-Type": "application/json"},
+        body: JSON.stringify({
+            user: user_,
+            pass: pass_
+        })})
+    .then(respuesta => respuesta.json())
+    .then(datos => {
+       console.log(datos);
+    })
+}
+
+
 /* fetch(url)
     .then(respuesta => respuesta.text()
     )

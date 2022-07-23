@@ -42,6 +42,24 @@ app.post("/", (req, res) =>
              }
       })
 })
+
+app.post("/create", (req, res) => 
+{
+    Usuario.findOne({ user: req.body.user, pass: req.body.pass }, (err, unUsuario) => 
+    { 
+        if (err)  
+        { 
+            return console.log(err) 
+        } 
+        else if (unUsuario === null)  
+        {
+            let schema = new Usuario({ user: req.body.user, pass: req.body.pass, })
+            schema.save((err, content_) => { if (err) { console.log(err) } else { res.json(content_)}})
+            
+           res.json({id_valido: false})
+        } 
+      })
+})
  
 app.use((req, res, next) => 
 {
@@ -89,17 +107,6 @@ app.get("/content/:id", (req, res) =>
  
 app.post("/content", (req, res) => 
 {
-    console.log("save ---------");
-    console.log(req.body);
-    console.log(req.body.title);
-
-    console.log(req.body.title);
-    console.log(req.body.year);
-    console.log(req.body.category);
-    console.log(req.body.genero);
-    console.log(req.body.status);
-    console.log(req.body.description);
-
     let content = new Content({ 
         title: req.body.title, 
         year: req.body.year, 
@@ -108,12 +115,7 @@ app.post("/content", (req, res) =>
         category: req.body.category,
         description: req.body.description,
         id_Usuario: req.body.id_Usuario})
-        
-        content.save((err, content_) => { if (err) { console.log(err) } 
-       else 
-       {
-            res.json(content_)
-        }
+        content.save((err, content_) => { if (err) { console.log(err) } else { res.json(content_)}
     })
 })
 

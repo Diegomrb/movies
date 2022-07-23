@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,11 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="app.css">
 </head>
-
-<body>
-             
-    <div class="modal_form  mt-0" >
-       
+<body>      
+    <div class="modal_form  mt-0"> 
         <div class="alert">
             <div id="login" class="container mt-1">
                <div class="row mt-5">
@@ -27,8 +23,6 @@
                     <input type="button" value="REGISTRAR" id="bt_registrar" class="btn btn-info mt-1">
                    </div>
                </div>
-                    
-
             </div>
             <div id="info" style="display: none" class="container" >
                 <div class="nav_ row">
@@ -37,16 +31,13 @@
                 </div>
                 <div class="row">
                     <div class="col-md-8 lista_" >
-                        
                         <div class="container p-1" hidden>
                             <div class="row" >
                                 <input type="text" id="txt_buscar" placeholder="BUSCAR"  class="float-end  col-md-10">
-                
                                 <input type="button" value="BUSCAR" id="bt_buscar" class="btn btn-primary mt-1 col">
                             </div>
                         </div>
-                        <div class="container global " >
-                           
+                        <div class="container global">
                             <div id="datos" class="row mensajes"> </div>
                         </div>
                       </div>
@@ -62,13 +53,10 @@
                         <option value="PELICULA">PELICULA</option>
                         <option value="SERIE">SERIE</option> 
                       </select>
-                    
                       <input type="radio" id="category_0" name="category" value="PELICULA">
                        <label for="PELICULA">Pelicula</label><br>
                        <input type="radio" id="category_1" name="category" value="SERIE">
                        <label for="SERIE">Serie</label><br>
-
-
                       <label for="genero">Genero</label>
                       <select class="form-select form-select-sm fondo_input" id="genero" aria-label="Default select example">
                         <option selected>Selecciona un genero..</option>
@@ -87,19 +75,11 @@
                     <input type="button" id="bt_mostrar" value="LISTAR" class="btn btn-info" hidden>
                     <input type="button" value="Registrar" id="bt_ingresar" class="btn input">
                     <input type="button" value="Actualizar" id="bt_modificar_content" class="btn input">
-                   </div>
-              
-            
+                   </div>            
                 </div>
-               
-                
-               
-                
-                
             </div>
         </div>
-    </div>
-    
+    </div>    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="client.js"></script>
 </body>
