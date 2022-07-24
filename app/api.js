@@ -6,7 +6,7 @@ const cors = require('cors');
 require("dotenv").config();
 let userDB = process.env.DB_USER;
 let passDB = process.env.DB_PASS;
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 80;
 let id_valido = false;
 app.use(cors());  
 mongoose.connect(DATABASE_URL);  
