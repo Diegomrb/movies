@@ -79,70 +79,90 @@
                         </div>
                       </div>
                    <div class="col-md-4 form_ content_" >
-                    <h4 class="title mt-1">Ingresar pelicula o serie</h4>
-                    <label for="title_">Titulo</label>
-                    <input type="text" id="title" class="form-control fondo_input" placeholder="Escribe un titulo para la serie o pelicula" required>  
-                    <label for="year_" class="mt-1">Año de publicación</label>
-                    <input type="number" id="year" class="form-control fondo_input" placeholder="Año de publicación" required> 
-                    <label for="category">Categoria</label> <br>
-                    <select class="form-select form-select-sm fondo_input" id="category" aria-label="Default select example" hidden>
-                        <option selected>Seleciona una categoria</option>
-                        <option value="PELICULA">PELICULA</option>
-                        <option value="SERIE">SERIE</option> 
-                      </select>
-                      <input type="radio" id="category_0" name="category" value="PELICULA">
-                       <label for="PELICULA">Pelicula</label><br>
-                       <input type="radio" id="category_1" name="category" value="SERIE">
-                       <label for="SERIE">Serie</label><br>
-                      <label for="genero">Genero</label>
-                      <select class="form-select form-select-sm fondo_input" id="genero" aria-label="Default select example">
-                        <option selected>Selecciona un genero..</option>
-                        <option value="ACCION">ACCIÓN</option>
-                        <option value="ANIME">ANIME</option>
-                        <option value="INTRIGA">INTRIGA</option>
-                        <option value="CLASICAS">CLÁSICAS</option>
-                        <option value="COMEDIAS">COMEDIAS</option>
-                        <option value="CORTOS">CORTOS</option>
-                        <option value="DE_HOLLIWOOD">DEHOLLIWOOD</option>
-                        <option value="DEPORTES">DEPORTES</option>
-                        <option value="DE_ADOLESCENTES">DE ADOLESCENTES</option>
-                        <option value="DOCUMENTALES">DOCUMENTALES</option>
-                        <option value="DRAMAS">DRAMAS</option>
-                        <option value="FANTASIA">FANTASÍA</option>
-                        <option value="FE_Y_ESPIRITUALIDAD">FE Y ESPIRITUALIDAD</option>
-                        <option value="INDEPENDIENTES">INDEPENDIENTES</option>
-                        <option value="INTERNACIONALES">INTERNACIONALES</option>
-                        <option value="LATINOAMERICANAS">LATINOAMERICANAS</option>
-                        <option value="LOS_FAVORITOS_DE_LA_CRITICA">LOS FAVORITOS DE LA CRÍTICA</option>
-                        <option value="MÚSICA_Y_MUSICALES">MÚSICA Y MUSICALES</option>
-                        <option value="PARA_VER_EN_FAMILIA">PARA VER EN FAMILIA</option>
-                        <option value="POLICIALES">POLICIALES</option>
-                        <option value="ROMANCES">ROMANCES</option>
-                        <option value="SCI-FI">SCI-FI</option>
-                        <option value="TERROR">TERROR</option> 
-                      </select>
-                     <hr>
-                      <label for="status">Estatus</label>
-                      <select class="form-select form-select-sm fondo_input" id="status" aria-label="Default select example">
-                        <option value="ACTIVE">ACTIVE</option>
-                        <option value="INACTIVE">INACTIVE</option> 
-                      </select>
-                      <label for="description">Descripción</label>
-                      <textarea name="description" id="description" class="form-control fondo_input" placeholder="Escriba aqui su reseña.."></textarea>
-                    <hr>
-                    <input type="button" id="bt_mostrar" value="LISTAR" class="btn btn-info" hidden>
-                    <input type="button" value="Registrar" id="bt_ingresar" class="btn input">
-                    <input type="button" value="Actualizar" id="bt_modificar_content" class="btn input">
-                     <hr>
-                     <form action="create" method="post">
-                        <h4 class="title">Crear cuenta </h4>
-                        <label for="txt_user">Usuario</label>
-                        <input type="text" id="username" value="" name="user" class="form-control" placeholder="Nombre de usuario">
-                        <label for="txt_pass">Contraseña</label>
-                        <input type="password" id="password" value="" name="pass" class="form-control" placeholder="Contraseña">
-                        <input type="button" value="Crear cuenta" id="create_usr" class="btn btn-info mt-1" >
-                     </form>
-                     <hr>
+                    
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Contenido</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Usuarios</button>
+                        </li>
+                      </ul>
+                      <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                            <h4 class="title mt-1">Ingresar pelicula o serie</h4>
+                            <label for="title_">Titulo</label>
+                            <input type="text" id="title" class="form-control fondo_input" placeholder="Escribe un titulo para la serie o pelicula" required>  
+                            <label for="year_" class="mt-1">Año de publicación</label>
+                            <input type="number" id="year" class="form-control fondo_input" placeholder="Año de publicación" required> 
+                            <label for="category">Categoria</label> <br>
+                            <select class="form-select form-select-sm fondo_input" id="category" aria-label="Default select example" hidden>
+                                <option selected>Seleciona una categoria</option>
+                                <option value="PELICULA">PELICULA</option>
+                                <option value="SERIE">SERIE</option> 
+                              </select>
+                              <input type="radio" id="category_0" name="category" value="PELICULA">
+                               <label for="PELICULA">Pelicula</label><br>
+                               <input type="radio" id="category_1" name="category" value="SERIE">
+                               <label for="SERIE">Serie</label><br>
+                              <label for="genero">Genero</label>
+                              <select class="form-select form-select-sm fondo_input" id="genero" aria-label="Default select example">
+                                <option selected>Selecciona un genero..</option>
+                                <option value="ACCION">ACCIÓN</option>
+                                <option value="ANIME">ANIME</option>
+                                <option value="INTRIGA">INTRIGA</option>
+                                <option value="CLASICAS">CLÁSICAS</option>
+                                <option value="COMEDIAS">COMEDIAS</option>
+                                <option value="CORTOS">CORTOS</option>
+                                <option value="DE_HOLLIWOOD">DEHOLLIWOOD</option>
+                                <option value="DEPORTES">DEPORTES</option>
+                                <option value="DE_ADOLESCENTES">DE ADOLESCENTES</option>
+                                <option value="DOCUMENTALES">DOCUMENTALES</option>
+                                <option value="DRAMAS">DRAMAS</option>
+                                <option value="FANTASIA">FANTASÍA</option>
+                                <option value="FE_Y_ESPIRITUALIDAD">FE Y ESPIRITUALIDAD</option>
+                                <option value="INDEPENDIENTES">INDEPENDIENTES</option>
+                                <option value="INTERNACIONALES">INTERNACIONALES</option>
+                                <option value="LATINOAMERICANAS">LATINOAMERICANAS</option>
+                                <option value="LOS_FAVORITOS_DE_LA_CRITICA">LOS FAVORITOS DE LA CRÍTICA</option>
+                                <option value="MÚSICA_Y_MUSICALES">MÚSICA Y MUSICALES</option>
+                                <option value="PARA_VER_EN_FAMILIA">PARA VER EN FAMILIA</option>
+                                <option value="POLICIALES">POLICIALES</option>
+                                <option value="ROMANCES">ROMANCES</option>
+                                <option value="SCI-FI">SCI-FI</option>
+                                <option value="TERROR">TERROR</option> 
+                              </select>
+                             <hr>
+                              <label for="status">Estatus</label>
+                              <select class="form-select form-select-sm fondo_input" id="status" aria-label="Default select example">
+                                <option value="ACTIVE">ACTIVE</option>
+                                <option value="INACTIVE">INACTIVE</option> 
+                              </select>
+                              <label for="description">Descripción</label>
+                              <textarea name="description" id="description" class="form-control fondo_input" placeholder="Escriba aqui su reseña.."></textarea>
+                            <hr>
+                            <input type="button" id="bt_mostrar" value="LISTAR" class="btn btn-info" hidden>
+                            <input type="button" value="Registrar" id="bt_ingresar" class="btn input">
+                            <input type="button" value="Actualizar" id="bt_modificar_content" class="btn input">
+                            
+
+
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+                            <form action="create" method="post">
+                                <h4 class="title">Crear cuenta </h4>
+                                <label for="txt_user">Usuario</label>
+                                <input type="text" id="username" value="" name="user" class="form-control" placeholder="Nombre de usuario">
+                                <label for="txt_pass">Contraseña</label>
+                                <input type="password" id="password" value="" name="pass" class="form-control" placeholder="Contraseña">
+                                <input type="button" value="Crear cuenta" id="create_usr" class="btn btn-info mt-1" >
+                             </form>
+
+                        </div> 
+                    
+                    
                    </div>            
                 </div>
             </div>
