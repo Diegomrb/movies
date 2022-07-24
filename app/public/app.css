@@ -1,14 +1,14 @@
 .modal_form {
- 
   color: black;
   background: rgb(2,0,36);
-background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(61, 147, 234) 35%, rgb(221, 0, 255) 100%);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(61, 147, 234) 35%, rgb(221, 0, 255) 100%);
 }
 
 .title 
 {
   color: #959595; 
 }
+
 .nav_ {
   background-color:#393939;
   border-radius:10px 10px 0px 0px;
@@ -38,7 +38,7 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(61, 147, 234) 35%, rgb
 }
 
 .global {
-	height: 600px;
+	height: 700px;
 	width: 100%;
 	border: 0px solid #ddd;
 	overflow-y: scroll;
