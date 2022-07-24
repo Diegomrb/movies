@@ -1,4 +1,4 @@
-let url = "http://localhost:3000";
+let url = "http://localhost";
 let btLoguear = document.querySelector("#bt_loguear");
 let username_form = document.querySelector("#txt_user");
 let pass_form = document.querySelector("#txt_pass");
