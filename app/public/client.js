@@ -8,12 +8,14 @@ let genero_query = document.querySelector("#genero_query");
 let category_query = document.querySelector("#category_query");
 let buscar_ = document.querySelector("#txt_buscar");
 
-
-let btBuscar = document.querySelector("#bt_buscar");
-btBuscar.addEventListener("click", buscarcontent);
-
 category_query.addEventListener("change", buscarcontent);
 genero_query.addEventListener("change", buscarcontent);
+
+buscar_.addEventListener("keyup", function (e) {
+    if (e.key === 'Enter' || e.keyCode === 13) {
+        buscarcontent();
+    }
+});
 
 let btn_ingresar = document.querySelector("#bt_ingresar");
 let btn_create_usr = document.querySelector("#create_usr");

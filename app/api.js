@@ -4,8 +4,6 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 require("dotenv").config();
-let userDB = process.env.DB_USER;
-let passDB = process.env.DB_PASS;
 const port = process.env.PORT || 80;
 let id_valido = false;
 app.use(cors());  
@@ -99,7 +97,7 @@ app.post("/content/query", (req, res) =>
     if(req.body.title != "")
     {
        Content.find({$text: {$search: req.body.title}})
-       .limit(5)
+       .limit(3)
        .exec(function(err, content) { 
         if (err) { return console.log(err) } 
         else { console.log(content); res.json(content); }
