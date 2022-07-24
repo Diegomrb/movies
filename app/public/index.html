@@ -32,8 +32,40 @@
                     <div class="col-md-8 lista_" >
                         <div class="container p-1">
                             <div class="row" >
-                                <input type="text" id="txt_buscar" placeholder="BUSCAR"  class="float-end  col-md-10">
-                                <input type="button" value="BUSCAR" id="bt_buscar" class="btn btn-primary mt-1 col">
+                                <select class="form-select-sm col-md-3" id="genero_query" aria-label="Default select example" hidden>
+                                    <option value="NONE" selected>Filtrar un genero</option>
+                                    <option value="ACCION">ACCIÓN</option>
+                                    <option value="ANIME">ANIME</option>
+                                    <option value="INTRIGA">INTRIGA</option>
+                                    <option value="CLASICAS">CLÁSICAS</option>
+                                    <option value="COMEDIAS">COMEDIAS</option>
+                                    <option value="CORTOS">CORTOS</option>
+                                    <option value="DE_HOLLIWOOD">DEHOLLIWOOD</option>
+                                    <option value="DEPORTES">DEPORTES</option>
+                                    <option value="DE_ADOLESCENTES">DE ADOLESCENTES</option>
+                                    <option value="DOCUMENTALES">DOCUMENTALES</option>
+                                    <option value="DRAMAS">DRAMAS</option>
+                                    <option value="FANTASIA">FANTASÍA</option>
+                                    <option value="FE_Y_ESPIRITUALIDAD">FE Y ESPIRITUALIDAD</option>
+                                    <option value="INDEPENDIENTES">INDEPENDIENTES</option>
+                                    <option value="INTERNACIONALES">INTERNACIONALES</option>
+                                    <option value="LATINOAMERICANAS">LATINOAMERICANAS</option>
+                                    <option value="LOS_FAVORITOS_DE_LA_CRITICA">LOS FAVORITOS DE LA CRÍTICA</option>
+                                    <option value="MÚSICA_Y_MUSICALES">MÚSICA Y MUSICALES</option>
+                                    <option value="PARA_VER_EN_FAMILIA">PARA VER EN FAMILIA</option>
+                                    <option value="POLICIALES">POLICIALES</option>
+                                    <option value="ROMANCES">ROMANCES</option>
+                                    <option value="SCI-FI">SCI-FI</option>
+                                    <option value="TERROR">TERROR</option> 
+                                  </select>
+                                <select class="form-select-sm col-md-3" id="category_query" aria-label="Default select example">
+                                    <option value="NONE" selected>Filtrar por categoria</option>
+                                    <option value="PELICULA">PELICULA</option>
+                                    <option value="SERIE">SERIE</option> 
+                                  </select>
+                                  <input type="text" id="txt_buscar" placeholder="Escribe un titulo.."  class="float-end  col-md-3" hidden>
+                               
+                                  <input type="button" value="Buscar" id="bt_buscar" class="btn btn-primary mt-1 col-md-2">
                             </div>
                         </div>
                         <div class="container global">

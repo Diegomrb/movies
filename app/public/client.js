@@ -3,6 +3,8 @@ let btLoguear = document.querySelector("#bt_loguear");
 let username_form = document.querySelector("#txt_user");
 let pass_form = document.querySelector("#txt_pass");
 let btn_mostrar = document.querySelector("#bt_mostrar");
+let genero_query = document.querySelector("#genero_query");
+let category_query = document.querySelector("#category_query");
 let buscar_ = document.querySelector("#txt_buscar");
 let btBuscar = document.querySelector("#bt_buscar");
 
@@ -22,7 +24,8 @@ let year_ = document.querySelector("#year");
 let category_ = document.querySelector('[name="category"]');
 let status_ = document.querySelector("#status");
 let genero_ = document.querySelector("#genero");
-let description_ = document.querySelector("#description")
+let description_ = document.querySelector("#description");
+
 
 let content;
 let contentModificar;
@@ -61,6 +64,23 @@ function mostrarDatos() {
             mostrarcontent(datos)
         })
 }
+
+function buscarcontent() 
+{ 
+    fetch(`${url}/content/query`, {
+        method: "POST", headers: { "Content-Type": "application/json"},
+        body: JSON.stringify({
+            title: buscar_.value,
+            genero: genero_query.value,
+            category : category_query.value,
+        })})
+    .then(respuesta => respuesta.json())
+    .then(datos => {
+        //content.push(datos)
+        mostrarcontent(datos);
+    })
+}
+
 
 function checkCategory(category) 
 {
@@ -216,6 +236,7 @@ function ingresarApp()
 
 function mostrarcontent(_content) 
 {
+    console.log(_content);
     content = _content
     divDatos.innerHTML = "";
     _content.forEach(element => 
@@ -258,21 +279,6 @@ function mostrarDatosUncontent() {
                //aca vendria que muestre los datos de ese elemento den el div
            }) */
 }
-
-function buscarcontent() {
-    let query = buscar_.value;
-    console.log(query);
-    fetch(`${url}/content/${query}`)
-        .then(respuesta => respuesta.json())
-        .then(datos => {
-            content = datos
-            console.log(datos);
-            mostrarcontent(datos)
-            //aca vendria que muestre los datos de ese elemento den el div
-        })
-}
-
-
 
 let btCerrar = document.querySelector("#bt_cerrar");
 btCerrar.addEventListener("click", function () {
