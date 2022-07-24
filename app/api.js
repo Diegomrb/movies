@@ -94,7 +94,17 @@ app.post("/content/query", (req, res) =>
 {
     console.log(req.body);
 
-    if(req.body.title != "")
+    if(req.body.title == "" &&  req.body.genero == "NONE" && req.body.category == "NONE")
+    {
+        Content.find((err, content) => { if (err) { return console.log(err) } 
+        else 
+        {
+          console.log(content);
+          res.json(content);
+        }
+         })
+    } 
+    else if(req.body.title != "")
     {
        Content.find({$text: {$search: req.body.title}})
        .limit(3)
