@@ -258,13 +258,11 @@ function mostrarDatosUncontent() {
                //aca vendria que muestre los datos de ese elemento den el div
            }) */
 }
-//buscar content()
-//http://localhost:3000/buscar?texto=er
+
 function buscarcontent() {
-    let textoIngresadoBuscar = buscar_.value;
-    console.log(textoIngresadoBuscar);
-    //BUSQUEDA LA HAGO EN content
-    fetch(`${url}/buscar?texto=${textoIngresadoBuscar}`)
+    let query = buscar_.value;
+    console.log(query);
+    fetch(`${url}/content/${query}`)
         .then(respuesta => respuesta.json())
         .then(datos => {
             content = datos

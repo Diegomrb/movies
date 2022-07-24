@@ -94,7 +94,7 @@ app.get("/content", (req, res) =>
 app.get("/content/:title", (req, res) => 
 {
     console.log(req.params.title);   
-    Content.findOne({ title: req.params.title},(err, content) => { if (err) { return console.log(err) } 
+    Content.find({ title: req.params.title},(err, content) => { if (err) { return console.log(err) } 
           else { console.log(content); res.json(content); }
         })
 })
