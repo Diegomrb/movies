@@ -104,7 +104,7 @@ function getCategory()
     }
     return "";
 }
-// save and show data mostrarDatos()
+
 function save() 
 {
     fetch(`${url}/content`, {
@@ -133,8 +133,6 @@ function update()
     contentModificar.genero = genero_.value;
     contentModificar.status = status_.value;
     contentModificar.description = description_.value;
-    //checkCategory(contentModificar.category);
-
     mostrarcontent(content)
     fetch(`${url}/content`, {
             method: "PUT",
