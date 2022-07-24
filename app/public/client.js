@@ -55,14 +55,6 @@ function create_user()
 }
 
 
-/* fetch(url)
-    .then(respuesta => respuesta.text()
-    )
-    .then(datos => {
-        divDatos.innerHTML = datos;
-    }) */
-
-//http://localhost:3000/content
 function mostrarDatos() {
     fetch(`${url}/content`)
         .then(respuesta => respuesta.json())
@@ -257,35 +249,15 @@ function mostrarcontent(_content)
             </article>`
     });
 
-    let h1s = document.querySelectorAll("#datos h1");
-    h1s.forEach(element => {
-        element.addEventListener("click", mostrarDatosUncontent)
-    });
-    //----------------------------------------
     let bts_modificar = document.querySelectorAll(".modificar");
     bts_modificar.forEach(element => {
         element.addEventListener("click", editContent)
     });
-    //----------------------------------------
+    
     let bts_eliminar = document.querySelectorAll(".eliminar");
     bts_eliminar.forEach(element => {
         element.addEventListener("click", eliminarcontent)
     });
-}
-
-
-//mostrarDatosUncontent()
-//http://localhost:3000/content/3
-function mostrarDatosUncontent() {
-    let idLevantado = this.getAttribute("data-id");
-    console.log(idLevantado)
-    //AMPLIACION LA HAGO EN content
-    /*    fetch(`${url}/content/${idLevantado}`)
-           .then(respuesta => respuesta.json())
-           .then(datos => {
-               console.log(datos);
-               //aca vendria que muestre los datos de ese elemento den el div
-           }) */
 }
 
 let btCerrar = document.querySelector("#bt_cerrar");
