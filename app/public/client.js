@@ -3,10 +3,17 @@ let btLoguear = document.querySelector("#bt_loguear");
 let username_form = document.querySelector("#txt_user");
 let pass_form = document.querySelector("#txt_pass");
 let btn_mostrar = document.querySelector("#bt_mostrar");
+
 let genero_query = document.querySelector("#genero_query");
 let category_query = document.querySelector("#category_query");
 let buscar_ = document.querySelector("#txt_buscar");
+
+
 let btBuscar = document.querySelector("#bt_buscar");
+btBuscar.addEventListener("click", buscarcontent);
+
+category_query.addEventListener("change", buscarcontent);
+genero_query.addEventListener("change", buscarcontent);
 
 let btn_ingresar = document.querySelector("#bt_ingresar");
 let btn_create_usr = document.querySelector("#create_usr");
@@ -15,7 +22,8 @@ let divDatos = document.querySelector("#datos");
 
 btn_create_usr.addEventListener("click",create_user);
 btn_mostrar.addEventListener("click", mostrarDatos);
-btBuscar.addEventListener("click", buscarcontent);
+
+
 btn_ingresar.addEventListener("click", save);
 btLoguear.addEventListener("click", ingresarApp);
 

@@ -95,48 +95,23 @@ app.get("/content", (req, res) =>
 app.post("/content/query", (req, res) => 
 {
     console.log(req.body);
-    let category_ = req.body.category == "NONE" ? "" : req.body.category;
-    let genero_ = req.body.genero == "NONE" ? "" : req.body.genero;
-    console.log("content.query");
-
-    console.log(category_);
-    console.log(genero_);
-   
-    Content.find({ 
-                  category: category_,
-                 }
-                ,(err, content) => { if (err) { return console.log(err) } 
-          else { console.log(content); res.json(content); }
+    if(req.body.genero != "NONE")
+    {
+        Content.find({ genero: req.body.genero,},(err, content) => 
+        { 
+           if (err) { return console.log(err) } 
+             else { console.log(content); res.json(content); }
         })
-})
-
-app.get("/test/:title", (req, res) => 
-{ 
-    Content.find({ title: req.params.title},(err, content) => { if (err) { return console.log(err) } 
-          else { console.log(content); res.json(content); }
+    }
+    else if(req.body.category != "NONE")
+    {
+        Content.find({ category: req.body.category,},(err, content) => 
+        { 
+           if (err) { return console.log(err) } 
+             else { console.log(content); res.json(content); }
         })
-})
-
-app.get("/content/:title", (req, res) => 
-{
-    console.log(req.params.title);   
-    Content.find({ title: req.params.title},(err, content) => { if (err) { return console.log(err) } 
-          else { console.log(content); res.json(content); }
-        })
-})
-
-app.get("/content/genero/:genero", (req, res) => 
-{ 
-    Content.find({ genero: req.params.genero},(err, content) => { if (err) { return console.log(err) } 
-          else { console.log(content); res.json(content)}
-        })
-})
-
-app.get("/content/category/:category", (req, res) => 
-{   
-    Content.find({ category: req.params.category},(err, content) => { if (err) { return console.log(err) } 
-          else { console.log(content); res.json(content); }
-        })
+    }
+  
 })
 
 app.get("/content/:id", (req, res) => 

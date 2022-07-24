@@ -32,8 +32,9 @@
                     <div class="col-md-8 lista_" >
                         <div class="container p-1">
                             <div class="row" >
-                                <select class="form-select-sm col-md-3" id="genero_query" aria-label="Default select example" hidden>
-                                    <option value="NONE" selected>Filtrar un genero</option>
+                                <div class="col"></div>
+                                <select class="form-select-sm col-md-3" id="genero_query" aria-label="Default select example">
+                                    <option value="NONE" selected>Filtrar genero</option>
                                     <option value="ACCION">ACCIÓN</option>
                                     <option value="ANIME">ANIME</option>
                                     <option value="INTRIGA">INTRIGA</option>
@@ -59,13 +60,13 @@
                                     <option value="TERROR">TERROR</option> 
                                   </select>
                                 <select class="form-select-sm col-md-3" id="category_query" aria-label="Default select example">
-                                    <option value="NONE" selected>Filtrar por categoria</option>
+                                    <option value="NONE" selected>Filtrar categoria</option>
                                     <option value="PELICULA">PELICULA</option>
                                     <option value="SERIE">SERIE</option> 
                                   </select>
                                   <input type="text" id="txt_buscar" placeholder="Escribe un titulo.."  class="float-end  col-md-3" hidden>
                                
-                                  <input type="button" value="Buscar" id="bt_buscar" class="btn btn-primary mt-1 col-md-2">
+                                  <input type="button" value="Buscar" id="bt_buscar" class="btn btn-primary mt-1 col-md-2" hidden>
                             </div>
                         </div>
                         <div class="container global">
