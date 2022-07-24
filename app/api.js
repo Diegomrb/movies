@@ -95,14 +95,16 @@ app.get("/content", (req, res) =>
 app.post("/content/query", (req, res) => 
 {
     console.log(req.body);
-    if(req.body.genero != "NONE")
+
+    if(req.body.title != "")
     {
-        Content.find({ genero: req.body.genero,},(err, content) => 
-        { 
-           if (err) { return console.log(err) } 
-             else { console.log(content); res.json(content); }
-        })
-    }
+       Content.find({$text: {$search: req.body.title}})
+       .limit(5)
+       .exec(function(err, content) { 
+        if (err) { return console.log(err) } 
+        else { console.log(content); res.json(content); }
+       });
+    } 
     else if(req.body.category != "NONE")
     {
         Content.find({ category: req.body.category,},(err, content) => 
@@ -111,7 +113,14 @@ app.post("/content/query", (req, res) =>
              else { console.log(content); res.json(content); }
         })
     }
-  
+    else if(req.body.genero != "NONE")
+    {
+        Content.find({ genero: req.body.genero,},(err, content) => 
+        { 
+           if (err) { return console.log(err) } 
+             else { console.log(content); res.json(content); }
+        })
+    }
 })
 
 app.get("/content/:id", (req, res) => 
